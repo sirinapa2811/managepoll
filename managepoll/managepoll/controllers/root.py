@@ -51,6 +51,7 @@ class RootController(TGController):
     def managesurfvey(self,**kw):
         print '......................'
         print kw
+        print kw
         
         questionproject = model.QuestionProject()
         
