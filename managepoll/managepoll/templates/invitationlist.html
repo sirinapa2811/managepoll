@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="mymaster.html" />
+
+<head>
+  <title></title>
+
+	
+   	<script src="${tg.url('/_pluggable/managepoll/javascript/page/invitationlist.js')}"></script>
+   	
+   	
+</head>
+<body>
+<form action="" method="post" role="form"  id = "" >   
+
+<input type ="hidden" name ="id_question_project" id ="id_question_project" value="${questionproject.id_question_project}"/>
+</form>
+<div class="form-group ">
+	<div class="col-sm-12">
+		 <a href="#" class="btn btn-info" id = "btn_cancel" role="button">back</a>
+		 <a href="#" class="btn btn-info" id = "add" role="button">Add Publication</a>
+		
+		
+	</div>
+</div>
+<table id="grid-data" class="table table-condensed table-hover table-striped">   
+<thead>
+	<tr>
+		<th data-column-id="id_question_project" >Project ID</th>
+		<th data-column-id="name_content" >Name Content</th> 
+		<th data-column-id="subject" >Subject</th>
+		<th data-column-id="from_name">From Name</th>
+	</tr>
+</thead>
+</table>
+
+
+
+	
+</body>
+</html>
+
+
+

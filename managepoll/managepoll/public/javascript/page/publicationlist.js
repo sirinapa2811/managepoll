@@ -12,7 +12,7 @@
     		            
     		        };
     		    },
-    		    url: "/getdatapublication",
+    		    url: "/managepoll/getdatapublication",
     		    
     		    formatters: {
     		        "commands": function(column, row)
@@ -32,12 +32,12 @@
     		    {
     		    	
     		      // alert("Edit : " + $(this).data("row-id"));
-    		       window.location.assign("/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#idproject").val())
+    		       window.location.assign("/managepoll/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#idproject").val())
     		        
     		    }).end().find(".command-delete").on("click", function(e)
     		    {
     		        alert("Delete ID :" + $(this).data("row-id") + "?");
-    		        window.location.assign("/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#idproject").val())
+    		        window.location.assign("/managepoll/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#idproject").val())
     		       
 
     		         

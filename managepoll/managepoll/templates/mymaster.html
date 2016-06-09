@@ -21,12 +21,12 @@
 	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/plugins/morris.css')}" />
 	    
 	    <!-- Custom Fonts -->
-	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/font-awesome.min.css')}" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/font-awesome/css/font-awesome.min.css')}" />
 		
 		
   
 		<link rel="stylesheet" href=" ${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.css')}"/>
-		<script src="${tg.url('/_pluggable/managepoll/js/bootstrap-select.min.css')}"/>
+		<script src="${tg.url('/_pluggable/managepoll/js/bootstrap-select.js')}"/>
 			 
 	
   		<script src="${tg.url('/_pluggable/managepoll/javascript/bootstrap.min.js')}"></script>
@@ -47,12 +47,11 @@
     	<script src="${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.js')}"></script>
 		<script src="${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.fa.js')}"></script>
 		
-		<script src="${tg.url('/_pluggable/managepoll/js/jquery.step.min.js')}"></script>
-		<script src="${tg.url('/_pluggable/managepoll/js/jquery.step.js')}"></script>
+		<script src="${tg.url('/_pluggable/managepoll/js/jquery.steps.min.js')}"></script>
+		<script src="${tg.url('/_pluggable/managepoll/js/jquery.steps.js')}"></script>
 		
 		
 		 <link rel="stylesheet" href="${tg.url('/_pluggable/managepoll/UI/css/jquery-ui.css')}"/>
-  		 <script src="${tg.url('/_pluggable/managepoll/UI/js/jquery.js')}"></script>
   		 <script src="${tg.url('/_pluggable/managepoll/UI/js/jquery-ui.js')}"></script>
   	
 		 <script src="//cdn.ckeditor.com/4.5.9/basic/ckeditor.js"></script>
@@ -86,42 +85,19 @@
                     	<a href="${tg.url('/')}"><i class="fa fa-fw fa-dashboard"></i> Welcome</a>
                     	
                     </li>
-                    	<li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i> Create Data <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li class="${('', 'active')[value_of('page') == 'createprofile']}">
-                                <a href="${tg.url('/createprofile')}"><i class="glyphicon glyphicon-tag"></i> Create Member</a>
-                            </li>
-                             
-
-                        </ul>
-                    </li>
+                    
                   
                     
                     <li class="${('', 'active')[value_of('page') == 'surfvey']}">
-                    	<a href="${tg.url('/surfvey')}"><i class="fa fa-support fa"></i> Surfvey</a>
+                    	<a href="${tg.url('/managepoll/surfvey')}"><i class="fa fa-support fa"></i> Surfvey</a>
                     </li>
-                                   
-                    <li class="${('', 'active')[value_of('page') == 'matchcriteriavoter']}">
-                    	<a href="${tg.url('/matchcriteriavoter ')}"><i class="fa fa-support fa"></i> Match Criteria Voter </a>
-                    </li>
+                 
               		                   
                     <li class="${('', 'active')[value_of('page') == 'login']}">
-                    	<a href="${tg.url('/login')}"><i class="glyphicon glyphicon-log-in"></i> Login</a>
+                    	<a href="${tg.url('/managepoll/login')}"><i class="glyphicon glyphicon-log-in"></i> Login</a>
                     </li>
                   
-                   
-                    
-    
-    
-  
-                    
-                   
-                    
-                    
-                    
-                       
-                    
+         
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="mymaster.html" />
+
+<head>
+  <title></title>
+
+  <script src="${tg.url('/_pluggable/managepoll/javascript/page/publicationlist.js')}"></script>
+  
+</head>
+
+<body>
+<form action=""  method="post">
+
+<input type="hidden" class="form-control" name= "idproject" id = "idproject"  value = "${idproject}" />
+
+
+<div class="form-group ">
+	<div class="col-sm-12">
+		<h2>Publication List</h2>
+	</div>
+</div>
+
+<div class="form-group ">
+	<div class="col-sm-12">
+		 <a href="#" class="btn btn-info" id = "btn_cancel" role="button">back</a>
+		 <a href="#" class="btn btn-info" id = "addpublication" role="button">Add Publication</a>
+		
+		
+	</div>
+</div>
+ 
+ </form>  
+ 
+<table id="grid-data" class="table table-condensed table-hover table-striped">
+<thead>
+	<tr>
+		<th data-column-id="id_question_option" >Option ID</th>
+		<th data-column-id="name_publication" >Name Publication</th>
+		<th data-column-id="activate_date">Activate Date</th>
+		<th data-column-id="expire_date" >Expire Date</th>
+		<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+		
+		
+	</tr>
+</thead>
+</table>
+
+</body>
+</html>

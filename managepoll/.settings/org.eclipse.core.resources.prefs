@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//managepoll/controllers/__init__.py=utf-8
 encoding//managepoll/controllers/root.py=utf-8
 encoding//managepoll/model/__init__.py=utf-8
 encoding//managepoll/public/__init__.py=utf-8
