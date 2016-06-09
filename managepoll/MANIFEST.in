@@ -1,0 +1,4 @@
+recursive-include managepoll/public *
+recursive-include managepoll/templates *.html
+global-exclude *.pyc
+

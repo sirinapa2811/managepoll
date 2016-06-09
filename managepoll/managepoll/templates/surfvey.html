@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="${tg.url('mymaster.html')}" />
+
+<head>
+  <title></title>
+</head>
+<body>
+<form action="/savesurfver" method="post" role="form" class="form-horizontal">   
+ 
+
+
+            
+	<div class="form-group has-success">
+  		<label for="name" class="control-label col-sm-2" >Project Name</label>
+    	<div class="col-sm-10">
+    		<input type="text" class="form-control" name="p_name" required = "required"/>
+    	</div>
+  	</div>
+  	<div class="form-group has-success">
+   		<label for="mail" class="control-label col-sm-2" >description</label>
+    	<div class="col-sm-10">
+    		<input type="text" class="form-control" name="p_description" required ="required" />
+    	</div>
+   </div>
+   <div class="form-group has-success">
+    	<label for="pw" class="control-label col-sm-2" >Project Type</label>
+    	<div class="col-sm-10">
+    		<select class="btn btn-default dropdown-toggle" name="p_type"  >
+    			
+  				<option  py:for="g in projecttype" value = "${g.id_question_project_type}">${g.description}</option>
+			</select>
+    	</div>
+   </div>
+  
+
+
+   <div class="form-group has-success"> 
+    	<div class="col-sm-offset-2 col-sm-10">
+       		<button type="submit" class="btn btn-sm btn-success">SUBMIT</button>                    
+    	</div>
+  </div>
+</form>
+
+
+   
+<table id="grid-data" class="table table-condensed table-hover table-striped">
+<thead>
+	<tr>
+		<th data-column-id="id_question_project" >Project ID</th> 
+		<th data-column-id="name" >Project Name</th>
+		<th data-column-id="id_question_project_type.description">Project Type</th>
+		<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+		
+	</tr>
+</thead>
+</table>
+
+
+ 
+ <script >
+ var grid =  $("#grid-data").bootgrid({
+    ajax: true,
+    post: function ()
+    {
+        /* To accumulate custom parameter with the request object */
+        return {
+            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+        };
+    },
+    
+    url: "/managepoll/getdataproject",
+    formatters: {
+        "commands": function(column, row)
+        {
+        	//debugger;
+        	//console.log(row);
+        	return '<button type="button" class="btn btn-primary command-edit" data-row-id="' + row.id_question_project + '" data-row-name="' + row.name +'"><span class="fa fa-pencil"></span></button> ' + 
+            	   '<button type="button" class="btn btn-default command-delete" data-row-id="' + row.id_question_project + '" data-row-name="' + row.name +'"><span class="fa fa-trash-o"></span></button>' +
+            	   '<button type="button" class="btn btn-default command-invitation" data-row-id="' + row.id_question_project + '"><span class="glyphicon glyphicon-envelope"></span></button>' +
+     	   		   '<button type="button" class="btn btn-default command-publicationlist" data-row-id="' + row.id_question_project + '"><span class="glyphicon glyphicon-th"></span></button>';
+
+     	   		   
+        }
+    }
+  
+	}).on("loaded.rs.jquery.bootgrid", function(){
+		console.log("loaded.rs.jquery.bootgrid");
+    grid.find(".command-edit").on("click", function(e)
+    {
+    	
+       //alert("Edit : " + $(this).data("row-name"));
+       window.location.assign("/managepoll/managesurfvey?idproject=" + $(this).data("row-id"))
+        
+    }).end().find(".command-delete").on("click", function(e)
+    {
+        alert("Delete ID :" + $(this).data("row-id") + "?");
+        window.location.assign("/deletesurfvey?idproject=" + $(this).data("row-id"))
+       
+
+    }).end().find(".command-invitation").on("click", function(e)
+    {
+       
+        window.location.assign("/invitation?idproject=" + $(this).data("row-id"))
+        
+      	         
+    }).end().find(".command-publicationlist").on("click", function(e)
+    	    {
+    	    	       
+    	    	window.location.assign("/publicationlist?idproject=" + $(this).data("row-id"))
+    	    	         
+
+    });
+   
+});
+</script >
+
+
+
+
+</body>
+</html>
+
+
