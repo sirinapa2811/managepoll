@@ -76,7 +76,7 @@
 
     $("#btn_cancel").click(function(){
 		
-		window.location.assign("/publicationlist?idproject=" + $("#id_question_project").val())
+		window.location.assign("/managepoll/publicationlist?idproject=" + $("#id_question_project").val())
 		
 	});
  

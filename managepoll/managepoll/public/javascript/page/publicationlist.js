@@ -1,5 +1,6 @@
     $(document).ready(function() {
-    	//alert($("#idproject").val());
+    	//alert($("#id_question_project").val());
+    	
     	 var grid =  $("#grid-data").bootgrid({
     		 	
     		    ajax: true,
@@ -7,7 +8,7 @@
     		    {
     		        /* To accumulate custom parameter with the request object */
     		        return {
-    		            id: $("#idproject").val()
+    		            id: $("#id_question_project").val()
     		        
     		            
     		        };
@@ -32,12 +33,12 @@
     		    {
     		    	
     		      // alert("Edit : " + $(this).data("row-id"));
-    		       window.location.assign("/managepoll/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#idproject").val())
+    		       window.location.assign("/managepoll/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#id_question_project").val())
     		        
     		    }).end().find(".command-delete").on("click", function(e)
     		    {
     		        alert("Delete ID :" + $(this).data("row-id") + "?");
-    		        window.location.assign("/managepoll/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#idproject").val())
+    		        window.location.assign("/managepoll/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#id_question_project").val())
     		       
 
     		         
@@ -47,13 +48,13 @@
      
     	 $("#addpublication").click(function(){
     			
-    			window.location.assign("/publication?idproject=" + $("#idproject").val())
+    			window.location.assign("/managepoll/publication?idproject=" + $("#id_question_project").val())
     			
     		});
 
     	 $("#btn_cancel").click(function(){
     			
-    			window.location.assign("/surfvey")
+    			window.location.assign("/managepoll/surfvey")
     			
     		});  
     	 
