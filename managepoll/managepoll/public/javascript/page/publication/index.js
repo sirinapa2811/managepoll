@@ -13,7 +13,8 @@
     		            
     		        };
     		    },
-    		    url: "/managepoll/getdatapublication",
+    		    
+    		    url: "/managepoll/script/getdatapublication",
     		    
     		    formatters: {
     		        "commands": function(column, row)
@@ -33,28 +34,25 @@
     		    {
     		    	
     		      // alert("Edit : " + $(this).data("row-id"));
-    		       window.location.assign("/managepoll/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#id_question_project").val())
+    		       window.location.assign("/managepoll/publication/publication?idoption=" + $(this).data("row-id") + "&idproject=" + $("#id_question_project").val())
     		        
     		    }).end().find(".command-delete").on("click", function(e)
     		    {
     		        alert("Delete ID :" + $(this).data("row-id") + "?");
-    		        window.location.assign("/managepoll/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#id_question_project").val())
-    		       
-
-    		         
-
+    		        window.location.assign("/managepoll/publication/deletepublication?idoption=" + $(this).data("row-id")+ "&idproject=" + $("#id_question_project").val())
+    		 
     		    });
-    			 });
+    		});
      
     	 $("#addpublication").click(function(){
     			
-    			window.location.assign("/managepoll/publication?idproject=" + $("#id_question_project").val())
+    			window.location.assign("/managepoll/publication/publication?idproject=" + $("#id_question_project").val())
     			
     		});
 
     	 $("#btn_cancel").click(function(){
     			
-    			window.location.assign("/managepoll/surfvey")
+    			window.location.assign("/managepoll/project")
     			
     		});  
     	 

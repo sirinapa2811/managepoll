@@ -7,11 +7,14 @@
             {
                 /* To accumulate custom parameter with the request object */
                 return {
-                    id: $("#id_question_project").val()
+                	id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+                
                 };
             },
+        
+            url: "/managepoll/script/getdatainvittation",
             
-            url: "/managepoll/getdatainvittation",
+            
             formatters: {
 		        "commands": function(column, row)
 		        {
@@ -29,12 +32,12 @@
 	    {
 	    	
 	      // alert("Edit : " + $(this).data("row-id"));
-	       window.location.assign("/managepoll/invitation?idinvitation=" + $(this).data("row-id") + "&idproject=" + $("#id_question_project").val())
+	       window.location.assign("/managepoll/invitation/invitation?idinvitation=" + $(this).data("row-id"))
 	        
 	    }).end().find(".command-delete").on("click", function(e)
 	    {
 	        alert("Delete ID :" + $(this).data("row-id") + "?");
-	        window.location.assign("/managepoll/deleteinvitation?idinvitation=" + $(this).data("row-id")+ "&idproject=" + $("#id_question_project").val())
+	        window.location.assign("/managepoll/invitation/deleteinvitation?idinvitation=" + $(this).data("row-id"))
 	
 	    });
 	});
@@ -42,14 +45,10 @@
         
         $("#addinvitation").click(function(){
 			
-			window.location.assign("/managepoll/invitation?idproject=" + $("#id_question_project").val())
+			window.location.assign("/managepoll/invitation/invitation")
 			
 		});
 
-	 $("#btn_cancel").click(function(){
-			
-			window.location.assign("/managepoll/surfvey")
-			
-		});  
+	 
 	 
     });	

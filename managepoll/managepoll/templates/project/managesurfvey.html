@@ -2,23 +2,39 @@
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
-  <xi:include href="mymaster.html" />
+<xi:include href="master/mymaster.html" /> 
+
+ 
 
 <head>
   <title></title>
 	<link rel="stylesheet" href="${tg.url('/_pluggable/managepoll/from-building-load/src/css/style.css')}"/>
 	
 	
-
+	<script src="${tg.url('/_pluggable/managepoll/javascript/page/project/managesurfvey.js')}"></script>
+	
 </head>
 <body>
 
 	
-<input type ="hidden" name ="p_id" value="${questionproject.id_question_project}"/>
+<input type ="hidden" name ="id_question_project" value="${questionproject.id_question_project}"/>
 
 
 <div class="container">
-	<h2>Manage Survey</h2>
+	<div class="form-group">
+	    <div class="row">
+		    <div class="col-sm-10">
+		    	<b><span lang="oth">create_question</span></b>
+		    </div>
+		    <div class="col-sm-2">
+			    
+		    </div>	    
+	    </div>
+	</div>
+	
+	
+	
+	
   		<ul class="list-group">
     		<li class="list-group-item"><div class="col-sm-2"><b>Project ID </b></div>${questionproject.id_question_project}</li>
     		<li class="list-group-item"><div class="col-sm-2"><b>Project Name </b></div>${questionproject.name}</li>

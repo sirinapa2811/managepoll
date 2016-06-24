@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <xi:include href="master/mymaster.html" />
+
+<head>
+  <title></title>
+	<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css"/>
+ 	
+ 	
+	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+	
+
+	
+   	<script src="${tg.url('/_pluggable/managepoll/javascript/page/invitation/invitation.js')}"></script>
+   	
+  
+   	
+</head>
+<body>
+<form action="/managepoll/invitation/saveinvitation" method="post" role="form" class="form-horizontal" id = "save_inittation" >   
+
+
+
+<input type ="hidden" name ="id_question_invitation" id ="id_question_invitation"  value="${invitation.id_question_invitation}"/>
+
+
+
+	
+<div class="container">  
+
+
+
+
+	
+   
+   <div class="form-group ">
+   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">name_content</span></label>
+    	<div class="col-sm-10">
+    	    <input type="text" class="form-control" name="name_content" id = "name_content" value = "${invitation.name_content}"  data-rule-required = "true" />
+    	</div>
+   </div>
+      <div class="form-group ">
+   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">email_title</span></label>
+    	<div class="col-sm-10">
+    		<input type="text" class="form-control" name="subject"  id ="subject" value = "${invitation.subject}"  data-rule-required = "true"	/>
+    	</div>
+   </div>
+	
+	   <div class="form-group ">
+   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">from_name</span></label>
+    	<div class="col-sm-10">
+    		<input type="text" class="form-control" name="from_name" id ="from_name" value = "${invitation.from_name}"  data-rule-required = "true"	 />
+    	</div>
+   </div>
+	
+	
+	<div class="form-group">
+		<label for="mail" class="control-label col-sm-2" ><span lang="oth">content</span></label>
+  		
+  		<div class="col-sm-10">
+  			<textarea id="content" cols="70" rows="10" name="content"  data-rule-required = "true" >
+  			${invitation.content}
+  			</textarea>
+        	
+      	</div>    	
+	</div>
+	<div class="form-group">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-10">
+<label class="btn btn-success"  id = "vol_name"><span lang="oth">name_volunteers</span></label>
+        <label class="btn btn-success"  id = "acc_url" ><span lang="oth">access_url</span></label>
+        <label class="btn btn-success" id = "init_date"><span lang="oth">initial_date</span></label>
+        <label class="btn btn-success" id = "finish_date"><span lang="oth">finish_date</span></label>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-2"></div>
+	<div class="col-sm-10">
+		<!-- <input type="submit" class="btn btn-success" id = "save" value="save"/> -->
+		<button type="submit" class="btn btn-sm btn-success" ><span lang="oth">save</span></button>   
+		
+	</div>
+	</div>
+	</div>
+	</form>
+
+
+</body>
+</html>
