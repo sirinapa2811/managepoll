@@ -43,7 +43,7 @@ class RootController(TGController):
     
     
         print "call RootController(managepoll)"
-        self.lang = model.Languages.getAll()
+        #self.lang = model.Languages.getAll()
         self.voter = VoterController(model, DBSession, config_type=TGAdminConfig)
         
     
