@@ -76,3 +76,10 @@ class SurveyController(TGController):
         questionType = model.QuestionType.getAll(act = 1)
         return dict(page ='managesurfvey', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
     
+    
+    @expose('managepoll.templates.project.dragedrop')
+    def dragedrop(self,**kw):
+        
+        return dict(page ='dragedrop',idproject = kw['idproject'])
+        
+    

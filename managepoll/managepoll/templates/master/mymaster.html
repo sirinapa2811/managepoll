@@ -26,13 +26,16 @@
 		
   
 		<link rel="stylesheet" href=" ${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.css')}"/>
+		
+		<!-- jQuery -->
+    	<script src="${tg.url('/_pluggable/managepoll/js/jquery.js')}"></script>
+    	
 		<script src="${tg.url('/_pluggable/managepoll/js/bootstrap-select.js')}"/>
 			 
 	
   		<script src="${tg.url('/_pluggable/managepoll/javascript/bootstrap.min.js')}"></script>
   
-   		<!-- jQuery -->
-    	<script src="${tg.url('/_pluggable/managepoll/js/jquery.js')}"></script>
+
 
     	<!-- Bootstrap Core JavaScript -->
     	<script src="${tg.url('/_pluggable/managepoll/js/bootstrap.min.js')}"></script>
@@ -142,9 +145,13 @@
                 	<li class="${('', 'active')[value_of('page') == 'managesurfvey']}" >
                         <a href="${tg.url('/managepoll/project/managesurfvey?idproject=')}${idproject}" > <i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_question </span></a>
                     </li>
+                    <li class="${('', 'active')[value_of('page') == 'managesurfvey']}" >
+                        <a href="${tg.url('/managepoll/project/dragedrop?idproject=')}${idproject}" > <i class="glyphicon glyphicon-plus"></i> <span lang="oth">Drage Drop </span></a>
+                    </li>
                     <li class="${('', 'active')[value_of('page') == 'index']}">
                         <a href="${tg.url('/managepoll/publication/index?idproject=')}${idproject}"> <i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_publication</span></a>
                     </li>
+                    
                  </py:if>
                	</ul>              
            	</li>                    
