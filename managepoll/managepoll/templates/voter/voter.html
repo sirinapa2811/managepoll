@@ -1,0 +1,342 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+ 	<xi:include href="master/mymaster.html" />
+<head>
+  <title></title>
+       
+  	
+  	
+  	<link href="${tg.url('/theme/assets/global/plugins/select2/select2.css')}" rel="stylesheet" type="text/css"/>
+  	<script type="text/javascript" src="${tg.url('/theme/assets/global/plugins/select2/select2.min.js')}"></script>  	
+  	<script src="${tg.url('/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js')}" type="text/javascript"></script>
+  	
+  	
+  	<script src="${tg.url('/_pluggable/managepoll/javascript/page/voter/voter.js')}"></script>
+  
+</head>
+
+<body>
+<form action="/managepoll/voter/savevoter" method = "post" id="frm_voter">
+
+	<input type = "hidden" name = "id_voter" id = "id_voter" value = "${voter.id_voter}"/>
+	<input type = "hidden" name = "id_voter_map_type" id = "id_voter_map_type" value = "${voter.id_voter_map_type}"/>
+	<input type = "hidden" name = "id_telephone" id = "id_telephone" value = "${voter.id_telephone}"/>
+	<input type = "hidden" name = "id_address" id = "id_address" value = "${voter.id_address}"/>
+	<input type = "hidden" name = "id_employment" id = "id_employment" value = "${voter.id_employment}"/>
+
+<div class="container">
+
+    <div class="panel-group">
+    <div class="panel panel-info">
+      	<div class="panel-heading"><span lang="oth">general_personal</span></div>
+      	<div class="panel-body">
+      		<form action ="" medthod="post" >
+      		
+      		<div class="form-group">
+				<div class="row">
+					<div class="form-group">
+						<label  class="control-label col-sm-2" ><span lang="oth">prefix</span></label>							
+					</div>
+				<div class="form-group">
+					<div class="col-md-1">														
+						<input type="radio" name = "prefix" value = "Mr" py:attrs="h.checked('Mr', voter.prefix,'checked')" /> <span lang="oth">mr</span>
+					</div>
+					<div class="col-md-1">						
+						<input type="radio" name = "prefix" value = "Mrs" py:attrs="h.checked('Mrs', voter.prefix,'checked')"/> <span lang="oth">mrs</span>
+					</div>
+					<div class="col-md-1">	
+						<input type="radio" name = "prefix" value = "Miss" py:attrs="h.checked('Miss', voter.prefix,'checked')"/> <span lang="oth">miss</span>
+					</div>
+					<div class="col-md-2">	
+						<input type="radio" name = "prefix" value = "Ms" py:attrs="h.checked('Ms', voter.prefix,'checked')"/> <span lang="oth">ms</span> 		
+					</div>
+				
+				</div>
+				<div class="col-md-4">	
+				</div>
+				</div>
+			</div>	
+ 			
+      		<div class="form-group">
+				<div class="row">
+					<div class="form-group">
+						<label  class="control-label col-sm-2" ><span lang="oth">name</span></label>							
+					</div>
+				<div class="form-group">
+					<div class="col-md-5">							
+						<input type="text" class="form-control" name ="firstname"  id ="firstname"  value ="${voter.firstname}" data-rule-required = "true"/>						
+					</div>
+				</div>
+				<div class="form-group">				
+					<div class="col-md-5">										
+						<input type="text" class="form-control" name ="lastname" id ="lastname" value ="${voter.lastname}" data-rule-required = "true" />							
+					</div>
+				</div>
+				</div>
+			</div>	
+									
+									
+									
+							
+			<div class="form-group">
+				<div class="row">
+					<label  class="control-label col-sm-2" ><span lang="oth">telephone_number</span></label>
+					<div class="col-md-5">																		
+						<input type="text" class="form-control" name ="telephone"  value = "${voter.telephone}"  data-rule-required = "true"/>
+					</div>
+					<div class="col-md-5">
+						<select class="select2 form-control" name="id_telephone_type"  data-rule-required = "true">    														
+								<option value = "">Select ..</option>
+			    			<py:for each="tel in telephone">
+								<option  value="${tel.id_telephone_type}" py:attrs="h.checked(str(tel.id_telephone_type), voter.id_telephone_type,'selected')"  lang="oth"> ${tel.description} </option>	
+							</py:for>
+						</select>
+					</div>
+					
+				</div>
+			</div>
+									
+			<div class="form-group">
+				<div class="row">
+					<label  class="control-label col-sm-2" ><span lang="oth">email</span></label>
+				<div class="form-group">
+					<div class="col-md-10">
+						<input type="emails" class="form-control" name ="email" id = "email"  value = "${voter.email}" data-rule-required = "true" />
+					</div>
+				</div>
+				</div>
+			</div>
+					
+			<div class="form-group">
+				<div class="row">
+					<div class="form-group">
+						<label  class="control-label col-sm-2" ><span lang="oth">address</span></label>
+					</div>
+			 	<div class="form-group">					
+				<div class="col-md-2">
+					<select class="select2 form-control" id ="select_country" name="id_country"  data-rule-required = "true">														
+						 
+							<py:for each="country in listConutry">
+						<option  value="${country.code}" py:attrs="h.checked(str(country.code), voter.id_country,'selected')"  lang="oth"> ${country.description} </option>	
+							</py:for> 						
+					</select>
+					
+				</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-2">
+						<input type="text" class="form-control" placeholder="province" name = "province" value = "${voter.province}" data-rule-required = "true" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-2">
+						<input type="text" class="form-control" placeholder="city" name ="city" value = "${voter.city}" data-rule-required = "true" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-2">
+						<input type="text" class="form-control" placeholder="county" name="county" value = "${voter.county}" data-rule-required = "true" />
+					</div>
+				</div> 
+				<div class="form-group">
+				<div class="col-md-2">
+			 		<select class="select2 form-control" name="id_address_type" data-rule-required = "true">
+			 				<option value = "">Select ..</option>    	
+						<py:for each="address in addresstype">
+							<option  value="${address.id_address_type}" py:attrs="h.checked(str(address.id_address_type), voter.id_address_type,'selected')"  lang="oth"> ${address.description} </option>	
+						</py:for> 					
+					</select>
+					
+						
+			 	</div>
+			 	</div>
+			 	</div>
+			 	
+			</div> 
+									
+			<div class="form-group">
+				<div class="row">
+					<label  class="control-label col-sm-2" ><span lang="oth">birthdate</span></label>
+				<div class="col-md-10">
+					<input type="text" id ="birthdate" name="birthdate" class="datepicker form-control"   value = "${voter.birthdate}" data-rule-required = "true" />
+				</div>
+				</div>
+			</div>
+									
+			<div class="form-group">
+				<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">gender</span></label>
+				<div class="col-md-10">	
+					<select id ="id_gender" name = "id_gender" class="select2 form-control" data-rule-required = "true">
+				    	<option value = "">Select ..</option>    	
+							<py:for each="gen in gender">
+						<option  value="${gen.id_gender}" py:attrs="h.checked(str(gen.id_gender), voter.id_gender,'selected')"  lang="oth"> ${gen.description} </option>	
+							</py:for> 
+				    </select>		
+				</div>
+				</div>
+			</div>
+									
+			<div class="form-group">
+				<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">marrital_status</span></label>
+				<div class="col-md-10">
+					<select id ="id_marriage_status" name = "id_marriage_status" class="select2 form-control"  data-rule-required = "true">
+			    		<option value = "">Select ..</option>    	
+							<py:for each="marriage in marriageStatus">
+						<option  value="${marriage.id_marriage_status}" py:attrs="h.checked(str(marriage.id_marriage_status), voter.id_marriage_status,'selected')"  lang="oth"> ${marriage.description} </option>	
+							</py:for> 						
+			    	</select>					
+				</div>
+				</div>
+			</div>									
+		 	<div class="form-group">
+				<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">education</span></label>
+					<div class="col-md-10">
+						<select id ="id_education" name = "id_education" class="select2 form-control" data-rule-required = "true">
+			    			<option value = "">Select ..</option>    	
+								<py:for each="educat in education">
+							<option  value="${educat.id_education}" py:attrs="h.checked(str(educat.id_education), voter.id_education,'selected')"  lang="oth"> ${educat.description} </option>	
+								</py:for>
+			    		</select>
+					</div>
+				</div>
+			</div> 
+									
+			<div class="form-group">
+				<div class="row">
+					<label  class="control-label col-sm-2" ><span lang="oth">salary</span></label>
+				<div class="col-md-10">
+					<input type="number" class="form-control" placeholder="salary" name="salary" value = "${voter.salary}" data-rule-required = "true" />
+				</div>
+				</div>
+			</div>
+			
+		 	<div class="form-group">
+				<div class="row">
+					<label  class="control-label col-sm-2" ><span lang="oth">employment_status</span></label>
+				<div class="col-md-10">								
+					
+						<div class="row">
+							<div class="col-md-4">
+						 	<select id ="id_employment_status_type" name = "id_employment_status_type" class="select2 form-control" data-rule-required = "true" >
+				    				<option value = "">Select ..</option>
+				    			<py:for each="employment in employmentstatus">
+									<option  value="${employment.id_employment_status_type}" py:attrs="h.checked(str(employment.id_employment_status_type), voter.id_employment_status_type,'selected')"  lang="oth"> ${employment.description} - ${employment.id_employment_status_type}</option>	
+								</py:for>
+				    		</select>
+				    		
+							</div>														
+								<div class="col-md-4"><input type="text" class="form-control" placeholder="intructry_type" id="intructry_type" name="intructry_type" value="${voter.intructry_type}"/></div>									
+								<div class="col-md-4"><input type="text" class="form-control" placeholder="job_catagory" id="job_catagory" name="job_catagory" value="${voter.job_catagory}"/></div>						
+						</div>					
+				</div>
+			</div>
+		</div> 
+	
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">religion</span></label>
+				<div class="col-md-10">
+										
+					<select id ="id_religion" name = "id_religion" class="select2 form-control" data-rule-required = "true">
+		    			<option value = "">Select ..</option>
+				    		<py:for each="relig in religion">
+						<option  value="${relig.id_religion}" py:attrs="h.checked(str(relig.id_religion), voter.id_religion,'selected')"  lang="oth"> ${relig.description} </option>	
+							</py:for>								
+		    		</select>			    				
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">nationality</span></label>
+				<div class="col-md-10">						
+					<select id ="id_nationality" name = "id_nationality" class="select2 form-control" data-rule-required = "true">
+		    			<option value = "">Select ..</option>
+				    		<py:for each="nation in national">
+						<option  value="${nation.id_nationality}" py:attrs="h.checked(str(nation.id_nationality), voter.id_nationality,'selected')"  lang="oth"> ${nation.description} </option>	
+							</py:for>							
+		    		</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">race</span></label>
+				<div class="col-md-10">						
+					<select id ="id_race" name = "id_race" class="select2 form-control" data-rule-required = "true">	    			
+		    			<option value = "">Select ..</option>
+					    	<py:for each="arace in race">
+						<option  value="${arace.id_race}" py:attrs="h.checked(str(arace.id_race), voter.id_race,'selected')"  lang="oth"> ${arace.description} </option>	
+							</py:for>
+		    		</select>    		
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">living_condition</span></label>
+				<div class="col-md-10">	
+					<select id ="id_living_condition" name = "id_living_condition" class="select2 form-control" data-rule-required = "true">
+		    			<option value = "">Select ..</option>
+					    	<py:for each="livcondition in condition">
+						<option  value="${livcondition.id_living_condition}" py:attrs="h.checked(str(livcondition.id_living_condition), voter.id_living_condition,'selected')"  lang="oth"> ${livcondition.description} </option>	
+							</py:for>							
+		    		</select>
+	    		
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">size_family</span></label>
+				<div class="col-md-10">
+					<input type="number" class="form-control" placeholder="size_family" name ="size_family" value = "${voter.size_family}" data-rule-required = "true" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<label  class="control-label col-sm-2" ><span lang="oth">language</span></label>
+				<div class="col-md-10">	
+					<select id ="id_language" name = "id_language" class="select2 form-control" data-rule-required = "true">	    			
+		    			<option value = "">Select ..</option>
+						    <py:for each="language in lang">
+						<option  value="${language.id_language}" py:attrs="h.checked(str(language.id_language), voter.id_language,'selected')"  lang="oth"> ${language.name} </option>	
+							</py:for>							
+		    		</select>
+				</div>
+			</div>
+		</div>
+	<div class="form-group">
+		<div class="row">
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-sm btn-success">SUBMIT</button>  
+				<a href="#" class="btn btn-info" id = "btn_cancel" role="button">cancel</a>
+				
+			</div>
+		</div>
+	</div>	
+	
+	</form>
+	</div>
+	</div>
+
+	
+   	</div>
+</div>
+    
+ 
+	
+</form>					
+</body>
+</html>

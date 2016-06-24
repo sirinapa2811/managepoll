@@ -1,0 +1,215 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      py:strip="">
+<head py:match="head" py:attrs="select('@*')">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="${response.charset}" />
+  <title py:if="False">Your generic title goes here</title>
+  
+  		<link rel="stylesheet" href="${tg.url('/_pluggable/managepoll/css/bootstrap-select.min.css')}"/>  
+	  	<link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/bootstrap.min.css')}" />
+	  	
+	  	<link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/style.css')}" />
+	  	
+	  	<link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/bootstrap-combobox.css')}" />
+  
+	    <!-- Custom CSS -->
+	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/sb-admin.css')}" />
+	
+	    <!-- Morris Charts CSS -->
+	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/css/plugins/morris.css')}" />
+	    
+	    <!-- Custom Fonts -->
+	    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/_pluggable/managepoll/font-awesome/css/font-awesome.min.css')}" />
+		
+		
+  
+		<link rel="stylesheet" href=" ${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.css')}"/>
+		<script src="${tg.url('/_pluggable/managepoll/js/bootstrap-select.js')}"/>
+			 
+	
+  		<script src="${tg.url('/_pluggable/managepoll/javascript/bootstrap.min.js')}"></script>
+  
+   		<!-- jQuery -->
+    	<script src="${tg.url('/_pluggable/managepoll/js/jquery.js')}"></script>
+
+    	<!-- Bootstrap Core JavaScript -->
+    	<script src="${tg.url('/_pluggable/managepoll/js/bootstrap.min.js')}"></script>
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+	
+		
+		
+		
+		
+  
+    	<script src="${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/bootstrap-combobox.js')}"></script>
+    	
+    	<script src="${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.js')}"></script>
+		<script src="${tg.url('/_pluggable/managepoll/javascript/jquery.bootgrid/jquery.bootgrid.fa.js')}"></script>
+		
+		<script src="${tg.url('/_pluggable/managepoll/js/jquery.steps.min.js')}"></script>
+		<script src="${tg.url('/_pluggable/managepoll/js/jquery.steps.js')}"></script>
+		
+		
+		 <link rel="stylesheet" href="${tg.url('/_pluggable/managepoll/UI/css/jquery-ui.css')}"/>
+  		 <script src="${tg.url('/_pluggable/managepoll/UI/js/jquery-ui.js')}"></script>
+  		 
+  		 <link href="${tg.url('/javascript/jquery/plugins/jquery-confirm/jquery-confirm.min.css')}" rel="stylesheet" type="text/css"/>
+		<script src="${tg.url('/javascript/jquery/plugins/jquery-confirm/jquery-confirm.min.js')}" type="text/javascript"></script>  	
+		 <script src="//cdn.ckeditor.com/4.5.9/basic/ckeditor.js"></script>
+		 
+		 <!-- ADD PLUGINS LOCAL-->
+  	
+	  	<script src="${tg.url('/javascript/jquery/plugins/js.cookie.js')}" type="text/javascript"></script>
+	  	<script src="${tg.url('/javascript/jquery/plugins/jquery-lang.js')}" type="text/javascript"></script>
+	  	<script src="${tg.url('/javascript/pages/language/language-page.js')}" type="text/javascript"></script>
+	  
+	  	<!-- END PLUGINS LOCAL-->
+  	
+ 		  <meta py:replace="select('*')"/>
+ 		  
+	<script type="text/javascript">
+	    lang = new Lang();
+		lang.dynamic('th', "${tg.url('/script/loadLangJquery?lang=th')}");
+		lang.dynamic('en', "${tg.url('/script/loadLangJquery?lang=en')}");
+		
+		lang.init({
+			defaultLang: 'oth',
+			currentLang: 'en',
+			cookie: {
+		        name: 'langCookie',
+		        expiry: 365,
+		        path: '/'
+		    },
+		    allowCookieOverride: true
+		});
+		 
+		
+	</script>
+ 		
+</head>
+
+<body py:match="body" py:attrs="select('@*')">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">        
+ <div class="navbar-header">  
+ 	 <div class="row">
+	
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+           <span class="sr-only">Toggle navigation</span>
+           
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         
+        </button>
+        
+        <a class="navbar-brand" href="index.html">Poll Survey</a>
+ 
+	</div> 
+	</div>
+     
+   		       
+
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+          <div class="row">
+				 <div>
+				
+					<ul class="nav navbar-nav pull-right">
+	             
+	                    <li py:if="request.identity"><a href="${tg.url('/account')}"> <span lang="oth">account</span> <span py:if="request.identity"> 	(${request.identity['repoze.who.userid']}) </span>  </a></li>
+	    				<li py:if="not request.identity"><a href="${tg.url('/login')}"><span lang="oth">login</span></a></li>
+	        			<li py:if="request.identity"><a href="${tg.url('/logout_handler')}"><span lang="oth">logout</span></a></li>
+	                    <li py:if="not request.identity"><a href="${tg.url('/register')}"><span lang="oth">registration</span></a></li>
+	                    <li class="dropdown dropdown-language">
+		                    <a href="#" id="show-language" class="dropdown-toggle btn-selec" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">Select Language <span class="caret"></span></a>
+	                        <ul class="dropdown-menu" id="dropdown-menu">
+	                            <li><a href="#" onclick="language.change('en'); return false;" id="lang_en"><img class="flag" src="/theme/assets/global/img/flags/en.png"/> <span class="langname" lang="oth">english</span> </a></li>
+						        <li><a href="#" onclick="language.change('th'); return false;" id="lang_th"><img class="flag" src="/theme/assets/global/img/flags/th.png"/> <span class="langname" lang="oth">thai</span></a></li>
+						         
+						    </ul>
+						</li>
+	                     
+	                </ul>
+            	</div>
+            </div>
+     </div>
+     <div class="collapse navbar-collapse navbar-ex1-collapse">
+    	<ul class="nav navbar-nav side-nav">
+        	
+            
+            <li>
+               <a href="${tg.url('/managepoll/project')}" ><i class="fa fa-support fa"></i> <span lang="oth">survey</span> </a>
+               <ul >
+          		
+                <py:if test = "idproject">
+                	 
+                
+                
+                    <li class="${('', 'active')[value_of('page') == 'managesurfvey']}" >
+                        <a href="${tg.url('/managepoll/project/managesurfvey?idproject=')}${idproject}" ><i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_question </span></a>
+                    </li>
+                    <li class="${('', 'active')[value_of('page') == 'index']}">
+                        <a href="${tg.url('/managepoll/publication/index?idproject=')}${idproject}"><i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_publication</span></a>
+                    </li>
+                 </py:if>
+               </ul>              
+           </li>                    
+              <!--  class="${('', 'active')[value_of('page') == 'index']}" --> 
+           <li>
+                <a href="${tg.url('/managepoll/voter')}"><i class="fa fa-support fa"></i> <span lang="oth">add_volunteer</span></a>
+           </li>
+           <li >
+                <a href="${tg.url('/managepoll/invitation')}"><i class="fa fa-support fa"></i> <span lang="oth">add_invitation</span></a>
+           </li>        
+        </ul>
+     </div>
+     </nav>
+     
+    <!-- /#wrapper -->
+
+ <div id="page-wrapper">
+ 	<div class="container-fluid">
+  	<br/><br/><br/>
+    <!-- Page Heading -->   
+           
+    <div class="container">
+    <!-- Flash messages -->
+	    <py:with vars="flash=tg.flash_obj.render('flash', use_js=False)">
+	      <div class="row">
+	        <div class="col-md-8 col-md-offset-2">
+	          <div py:if="flash" py:replace="Markup(flash)" />
+	        </div>
+	      </div>
+	    </py:with>
+    <!-- Main included content -->
+    <div py:replace="select('*|text()')"/>
+  	</div>
+	</div>
+</div>
+
+  
+    
+    <!-- Morris Charts JavaScript -->
+    <script src="${tg.url('/js/plugins/morris/raphael.min.js')}"></script>
+    <script src="${tg.url('/js/plugins/morris/morris.min.js')}"></script>
+    <script src="${tg.url('/js/plugins/morris/morris-data.js')}"></script>
+    
+   
+    <script type="text/javascript">
+	    
+		
+  	jQuery(document).ready(function() {
+		
+		language.init();
+	
+	});
+  	
+  
+	</script>
+
+
+    
+</body>
+</html>
