@@ -19,7 +19,8 @@ import sys
 from datetime import date,datetime
 #from surveyobject.voterobject import VoterObject
 from .script import LoadDataControllers
-from .project import SurveyController
+
+from .project import ProjectController
 from .invitation import InvitationController
 from .publication import PublicationController
 from .voter import VoterController
@@ -35,7 +36,7 @@ class RootController(TGController):
         
         self.utility = Utility()
         
-        self.project = SurveyController()
+        self.project = ProjectController()
         self.invitation = InvitationController()
         self.publication = PublicationController()
         
