@@ -32,7 +32,7 @@ $(document).ready(function() {
   
 
 	
-    debugger
+/*    debugger*/
     
 	$("#select_country").select2({
 	  	placeholder: '<i class="fa fa-map-marker"></i>&nbsp;Select a Country',
