@@ -5,7 +5,7 @@ from tg import request, redirect, tmpl_context
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tg.exceptions import HTTPFound
 from tg import predicates
-from tg.predicates import has_any_permission
+from tg.predicates import has_any_permission, in_any_group
 
 from managepoll import model 
 from managepoll.model import DBSession
@@ -20,8 +20,8 @@ from surveyobject import *
 
 class VoterController(TGController):
     
-    allow_only = has_any_permission('manage','creator',
-                                msg=l_('Only for people with the "manage" permission'))
+    allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
+    #has_any_permission('manage','creator', msg=l_('Only for people with the "manage" permission'))
     
     def __init__(self, models, session, config_type=None, translations=None):
         print "call VoterController(managepoll)"
