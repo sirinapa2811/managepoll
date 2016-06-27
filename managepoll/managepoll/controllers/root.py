@@ -7,10 +7,13 @@ from tg import request, redirect, tmpl_context
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tg.exceptions import HTTPFound
 from tg import predicates
-
+from tg.predicates import has_any_permission, in_any_group
 
 from managepoll import model 
-from managepoll.model import DBSession
+
+
+
+
 
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
@@ -29,23 +32,24 @@ from .voter import VoterController
 class RootController(TGController):
     
 
-   
+    allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
+    
+    invitation = InvitationController(model, model.DBSession, config_type=TGAdminConfig)
+    
+    voter = VoterController(model, model.DBSession, config_type=TGAdminConfig)
+    
+    publication = PublicationController(model, model.DBSession, config_type=TGAdminConfig)
+    project = ProjectController(model, model.DBSession, config_type=TGAdminConfig)
+    script = LoadDataControllers(model, model.DBSession, config_type=TGAdminConfig)
+    
     
     def __init__(self):
         
         
         self.utility = Utility()
         
-        self.project = ProjectController()
-        self.invitation = InvitationController()
-        self.publication = PublicationController()
         
-        self.script = LoadDataControllers()
-    
-    
-        print "call RootController(managepoll)"
-        #self.lang = model.Languages.getAll()
-        self.voter = VoterController(model, DBSession, config_type=TGAdminConfig)
+        
         
     
     @expose('managepoll.templates.index')

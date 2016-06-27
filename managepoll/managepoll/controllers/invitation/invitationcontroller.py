@@ -7,8 +7,6 @@ from tg.exceptions import HTTPFound
 from tg import predicates
 from tg.predicates import has_any_permission, in_any_group
 
-from managepoll import model 
-from managepoll.model import DBSession
 
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
@@ -22,9 +20,12 @@ class InvitationController(TGController):
     allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
     #has_any_permission('manage','creator',msg=l_('Only for people with the "manage" permission'))
     
-    def __init__(self):
+    def __init__(self, models, session, config_type=None, translations=None):
         self.utility = Utility()
-  
+        self.model = models       
+         
+        
+        
         
     #@require(predicates.in_any_group('creator','managers', msg=l_('Only for creator')))
     @expose('managepoll.templates.invitation.index')
@@ -41,16 +42,16 @@ class InvitationController(TGController):
         
         
         reload(sys).setdefaultencoding("utf-8");
-        invitation = model.Invitation()
-        self.emailtemplate = model.EmailTemplate()
+        invitation = self.model.Invitation()
+        self.emailtemplate = self.model.EmailTemplate()
         if('idinvitation' in kw):
             print kw['idinvitation']            
             #           
-            invitation = model.Invitation.getId(kw['idinvitation'])  
+            invitation = self.model.Invitation.getId(kw['idinvitation'])  
             
             
         else:
-            self.emailtemplate = model.EmailTemplate.getTemplateBy(5); 
+            self.emailtemplate = self.model.EmailTemplate.getTemplateBy(5); 
             
             invitation.name_content  = self.emailtemplate.sender
             invitation.from_name =  self.emailtemplate.sender
@@ -65,7 +66,7 @@ class InvitationController(TGController):
         reload(sys).setdefaultencoding('utf8') 
       
         
-        invitation = model.Invitation(**kw)
+        invitation = self.model.Invitation(**kw)
         invitation.user_id = user.user_id
         
                 

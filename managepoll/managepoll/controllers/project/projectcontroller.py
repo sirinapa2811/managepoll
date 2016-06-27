@@ -7,8 +7,8 @@ from tg.exceptions import HTTPFound
 from tg import predicates
 from tg.predicates import has_any_permission, in_any_group
 
-from managepoll import model 
-from managepoll.model import DBSession
+#from managepoll import model 
+#from managepoll.model import DBSession
 
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
@@ -23,21 +23,28 @@ class ProjectController(TGController):
     allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
     
      
-    def __init__(self):
+    def __init__(self, models, session, config_type=None, translations=None):
+        super(ProjectController, self).__init__()
+        
+        self.model= models
         self.utility = Utility()
-    
+         
+        
     
     @expose('managepoll.templates.project.index')
     def index(self,**kw):               
-        questionprojecttype = model.QuestionProjectType.getAll(act = 1)
+        questionprojecttype = self.model.QuestionProjectType.getAll(1)
+        #questionprojecttype = [self.model.QuestionProjectType()]
         return dict(page ='index',projecttype = questionprojecttype,idproject = None)   
+    
+    
     
     @expose()
     def savesurfver(self,**kw):
         user =  request.identity['user'];    
         print user.user_id #user_id --login
 
-        questionproject = model.QuestionProject(**kw)
+        questionproject = self.model.QuestionProject(**kw)
 
         questionproject.user_id = user.user_id
         questionproject.save()
@@ -53,7 +60,7 @@ class ProjectController(TGController):
     @expose()
     def deletesurfvey(self,**kw):
         print 'Delete : Project ID :', kw['idproject']
-        model.QuestionProject.deleteById(kw['idproject'])
+        self.models.QuestionProject.deleteById(kw['idproject'])
         redirect('/surfvey')
         
     
@@ -65,15 +72,15 @@ class ProjectController(TGController):
         print '......................'
         print kw
         
-        questionproject = model.QuestionProject()
+        questionproject = self.model.QuestionProject()
         
         if('idproject' in kw):
             print kw['idproject']
-            questionproject = model.QuestionProject.getId(kw['idproject'])
+            questionproject = self.model.QuestionProject.getId(kw['idproject'])
         else :
             print "don't have kw"    
         #g = model.QuestionProjectType.getAll(act = 1)
-        questionType = model.QuestionType.getAll(act = 1)
+        questionType = self.model.QuestionType.getAll(act = 1)
         return dict(page ='managesurfvey', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
     
     

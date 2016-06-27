@@ -7,9 +7,6 @@ from tg.exceptions import HTTPFound
 from tg import predicates
 from tg.predicates import has_any_permission, in_any_group
 
-from managepoll import model 
-from managepoll.model import DBSession
-
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
 from tgext.pyutilservice import Utility
@@ -26,23 +23,9 @@ class VoterController(TGController):
     def __init__(self, models, session, config_type=None, translations=None):
         print "call VoterController(managepoll)"
         
-        self.utility = Utility()
+        self.utility = Utility()           
+        self.model = models       
         
-    
-         
-        self.lang = models.Languages.getAll()
-        self.marriageStatus = models.MarriageStatus.getAll(act=1)
-        self.gender = models.Gender.getAll(act=1)
-        self.tel = models.TelephoneType.getAll(act=1)
-        self.religion = models.ReligionType.getAll(act=1)
-        self.national = models.NationalityType.getAll(act=1)
-        self.race = models.RaceType.getAll(act=1)
-        self.condition = models.LivingConditionType.getAll(act=1)
-        self.employmentstatus = models.EmploymentType.getAll(act=1)
-        self.listConutry = models.FixCountry.getAll(active=1)
-        self.telephone = models.TelephoneType.getAll(act=1)
-        self.education = models.EducationType.getAll(act=1)
-        self.addresstype = models.AddressType.getAll(act=1)
         
     @expose('managepoll.templates.voter.index')
     def index(self):    
@@ -59,11 +42,26 @@ class VoterController(TGController):
         if('idvoter' in kw):
             print kw
             print "Edit voter"
-            voter = model.Voter.getId(kw['idvoter'])
+            voter = self.model.Voter.getId(kw['idvoter'])
             voterObject.setVoter(voter)
             #employment = model.EmploymentDetail.getId(kw['idvoter'])
             
-            
+        print "voters : lang"
+        
+        self.lang = self.model.Languages.getAll()
+        print self.lang
+        self.marriageStatus = self.model.MarriageStatus.getAll(act=1)
+        self.gender = self.model.Gender.getAll(act=1)
+        self.tel = self.model.TelephoneType.getAll(act=1)
+        self.religion = self.model.ReligionType.getAll(act=1)
+        self.national = self.model.NationalityType.getAll(act=1)
+        self.race = self.model.RaceType.getAll(act=1)
+        self.condition = self.model.LivingConditionType.getAll(act=1)
+        self.employmentstatus = self.model.EmploymentType.getAll(act=1)
+        self.listConutry = self.model.FixCountry.getAll(active=1)
+        self.telephone = self.model.TelephoneType.getAll(act=1)
+        self.education = self.model.EducationType.getAll(act=1)
+        self.addresstype = self.model.AddressType.getAll(act=1)
             
         
         return dict(page = 'voters',
@@ -97,11 +95,11 @@ class VoterController(TGController):
         print kw['id_employment']
         print "********************"   
         
-        voter = model.Voter.getId(kw['id_voter'])
+        voter = self.model.Voter.getId(kw['id_voter'])
         
         if voter is None : 
             print "voter is none"
-            voter = model.Voter()
+            voter = self.model.Voter()
                         
         
         voter.email = kw['email']
@@ -130,9 +128,9 @@ class VoterController(TGController):
          
         print "Voter id : %s" %voter.id_voter
 
-        votermaptype =  model.VoterMapType.getId(kw['id_voter_map_type'])
+        votermaptype =  self.model.VoterMapType.getId(kw['id_voter_map_type'])
         if votermaptype is None : 
-            votermaptype = model.VoterMapType()
+            votermaptype = self.model.VoterMapType()
         
         votermaptype.id_voter = voter.id_voter
         votermaptype.id_voter_type = 5
@@ -142,9 +140,9 @@ class VoterController(TGController):
         
         print "voter map type id : %s" %votermaptype.id_voter_map_type
         
-        votertelephone = model.Telephone.getId(kw['id_telephone'])
+        votertelephone = self.model.Telephone.getId(kw['id_telephone'])
         if votertelephone is None:
-            votertelephone = model.Telephone()
+            votertelephone = self.model.Telephone()
         
          
         votertelephone.id_telephone_type = kw['id_telephone_type']
@@ -157,9 +155,9 @@ class VoterController(TGController):
         
         print "telephone : %s" %votertelephone.id_telephone
         
-        voteraddress = model.Address.getId(kw['id_address'])
+        voteraddress = self.model.Address.getId(kw['id_address'])
         if voteraddress is None:
-            voteraddress = model.Address()
+            voteraddress = self.model.Address()
         
         voteraddress.id_address_type = kw['id_address_type']
         voteraddress.id_voter = voter.id_voter
@@ -172,9 +170,9 @@ class VoterController(TGController):
             voteraddress.save()
         
           
-        voteremployment = model.EmploymentDetail.getId(kw['id_employment'])
+        voteremployment = self.model.EmploymentDetail.getId(kw['id_employment'])
         if voteremployment is None:
-            voteremployment = model.EmploymentDetail()
+            voteremployment = self.model.EmploymentDetail()
          
         
         voteremployment.id_voter = voter.id_voter
