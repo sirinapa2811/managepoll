@@ -86,12 +86,13 @@
 </head>
 
 <body py:match="body" py:attrs="select('@*')">
- <div >
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header"> 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -124,8 +125,10 @@
 	                </ul>
 	                </div>
 	                </div>
+	               
         </nav>
-    <div class="sidebar-content">
+  
+    <div class="nav navbar-inverse">
      <ul class="nav navbar-nav side-nav">
         	
             
@@ -137,10 +140,13 @@
                 	 
                 
                 
-                    <li class="${('', 'active')[value_of('page') == 'managesurfvey']}" >
-                        <a href="${tg.url('/managepoll/project/manageproject?idproject=')}${idproject}" ><i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_question </span></a>
+                    <li class="${('', 'active')[value_of('page') == 'dragdroptest']}" >
+                        <a href="${tg.url('/managepoll/project/dragdroptest?idproject=')}${idproject}" ><i class="glyphicon glyphicon-plus"></i> <span lang="oth">dragdroptest </span></a>
                     </li>
-                 
+                 	<li class="${('', 'active')[value_of('page') == 'managesurfvey']}" >
+                        <a href="${tg.url('/managepoll/project/edit?idproject=')}${idproject}" ><i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_question </span></a>
+                    </li>
+                    
                     <li class="${('', 'active')[value_of('page') == 'index']}">
                         <a href="${tg.url('/managepoll/publication/index?idproject=')}${idproject}"><i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_publication</span></a>
                     </li>
@@ -153,10 +159,13 @@
            </li>
            <li >
                 <a href="${tg.url('/managepoll/invitation')}"><i class="fa fa-support fa"></i> <span lang="oth">add_invitation</span></a>
-           </li>        
+           </li>     
+              
         </ul>
      
      </div> 
+  
+
         <div id="page-wrapper">
             <div class="container-fluid">
             <br/><br/><br/>
@@ -185,7 +194,7 @@
            </div>
         </div>
 
-    </div>
+    
     <!-- /#wrapper -->
 
  <script type="text/javascript">
