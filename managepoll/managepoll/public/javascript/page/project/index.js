@@ -29,12 +29,12 @@ var grid =  $("#grid-data").bootgrid({
     {
     	
        //alert("Edit : " + $(this).data("row-name"));
-       window.location.assign("/managepoll/project/managesurfvey?idproject=" + $(this).data("row-id"))
+       window.location.assign("/managepoll/project/edit?idproject=" + $(this).data("row-id"))
         
     }).end().find(".command-delete").on("click", function(e)
     {
         alert("Delete ID :" + $(this).data("row-id") + "?");
-        window.location.assign("/managepoll/project/deletesurfvey?idproject=" + $(this).data("row-id"))
+        window.location.assign("/managepoll/project/delete?idproject=" + $(this).data("row-id"))
 
     });
    
