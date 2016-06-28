@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="${tg.url('/_pluggable/managepoll/from-building-load/src/css/style.css')}"/>
 	
 	
-	<script src="${tg.url('/_pluggable/managepoll/javascript/page/project/managesurfvey.js')}"></script>
+	<script src="${tg.url('/_pluggable/managepoll/javascript/page/project/manageproject.js')}"></script>
 	
 </head>
 <body>
@@ -20,35 +20,17 @@
 <input type ="hidden" name ="id_question_project" value="${questionproject.id_question_project}"/>
 
 
-<div class="container">
-	<div class="form-group">
-	    <div class="row">
-		    <div class="col-sm-10">
-		    	<b><span lang="oth">create_question</span></b>
-		    </div>
-		    <div class="col-sm-2">
-			    
-		    </div>	    
-	    </div>
-	</div>
-	
-	
-	
-	
   		<ul class="list-group">
     		<li class="list-group-item"><div class="col-sm-2"><b>Project ID </b></div>${questionproject.id_question_project}</li>
     		<li class="list-group-item"><div class="col-sm-2"><b>Project Name </b></div>${questionproject.name}</li>
     		<li class="list-group-item"><div class="col-sm-2"><b>Project Type </b></div>${questionproject.question_project_type.description}</li>
+    		<li class="list-group-item">
+    		
+    		<div id="formBuilder"></div>
+    		</li>
+    	
     	</ul>			    		
-</div>
 
-
-	<div id="formBuilder"></div>
-
- 	
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
@@ -64,8 +46,8 @@
 
       $('#formBuilder').formBuilder({
         
-        load_url: 'managepoll/from-building-load/src/json/example.json',
-        save_url: '/savedata',
+        load_url: '/_pluggable/managepoll/from-building-load/src/json/example.json',
+        save_url: '/savedata'
         
 
       });
