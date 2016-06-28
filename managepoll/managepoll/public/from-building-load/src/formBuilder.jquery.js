@@ -632,7 +632,7 @@
 
 		// Auto load templates
 		dust.onLoad = function(name, callback) {
-		  $.ajax('/from-building-load/src/templates/' + name + '.tpl', {
+		  $.ajax('/_pluggable/managepoll/from-building-load/src/templates/' + name + '.tpl', {
 		    success: function(data) {
 		      callback(undefined, data);
 		    },

@@ -58,7 +58,7 @@ class ProjectController(TGController):
        
         
     @expose()
-    def deletesurfvey(self,**kw):
+    def delete(self,**kw):
         print 'Delete : Project ID :', kw['idproject']
         self.models.QuestionProject.deleteById(kw['idproject'])
         redirect('/surfvey')
@@ -68,7 +68,7 @@ class ProjectController(TGController):
     
     
     @expose('managepoll.templates.project.manageproject')
-    def manageproject(self,**kw):
+    def edit(self,**kw):
         print '......................'
         print kw
         
@@ -83,10 +83,9 @@ class ProjectController(TGController):
         questionType = self.model.QuestionType.getAll(act = 1)
         return dict(page ='managesurfvey', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
     
+    @expose('managepoll.templates.project.dragdroptest')
+    def dragdroptest(self,**kw):
+        return dict(page ='dragdroptest',idproject = kw['idproject'])
     
-    @expose('managepoll.templates.project.dragedrop')
-    def dragedrop(self,**kw):
-        
-        return dict(page ='dragedrop',idproject = kw['idproject'])
-        
+    
     
