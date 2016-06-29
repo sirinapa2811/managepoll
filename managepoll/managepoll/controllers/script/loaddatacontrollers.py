@@ -17,6 +17,7 @@ from tgext.admin.controller import AdminController
 from tgext.pyutilservice import Utility
 import sys
 from datetime import date,datetime
+from surveyobject import SearchGridObject
 
 class LoadDataControllers(TGController):   
     allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
@@ -24,38 +25,35 @@ class LoadDataControllers(TGController):
     def __init__(self, models, session, config_type=None, translations=None):
         self.utility = Utility()
         self.model = models       
-        
-   
+#    self.SearchGridObject = SearchGridObject(**kw)      
+#    search=self.SearchGridObject.searchPhrase
         
     @expose('json')
-    def getdatainvittation(self,**kw):
-        print "****************"
-        print kw
+    def getdatainvittation(self,**kw):      
         user =  request.identity['user'];
-        values,total = self.model.Invitation.getByUser(userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))              
+        self.SearchGridObject = SearchGridObject(**kw)               
+        values,total = self.model.Invitation.getByUser(search=self.SearchGridObject.searchPhrase,userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))              
         return dict(current= kw['current'] ,rowCount= kw['rowCount'],total=total,rows = values) 
     
     @expose('json')
-    def getdataproject(self,**kw):
-        print kw        
-        user =  request.identity['user'];        
-        values,total = self.model.QuestionProject.getFieldByUser(userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))   
-        
-        
-        print values     
+    def getdataproject(self,**kw):           
+        user =  request.identity['user'];          
+        self.SearchGridObject = SearchGridObject(**kw)          
+        values,total = self.model.QuestionProject.getFieldByUser(search=self.SearchGridObject.searchPhrase, userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))   
         return dict(current= kw['current'] ,rowCount= kw['rowCount'],total=total,rows = values)
     
     @expose('json')
     def getdatapublication(self,**kw):   
-        values,total = self.model.QuestionOption.getByProject(idProject=kw['id'],page=(int(kw['current'])-1), page_size=int(kw['rowCount']))            
+        self.SearchGridObject = SearchGridObject(**kw)        
+        values,total = self.model.QuestionOption.getByProject(search=self.SearchGridObject.searchPhrase, idProject=kw['id'],page=(int(kw['current'])-1), page_size=int(kw['rowCount']))            
         return dict(current= kw['current'] ,rowCount= kw['rowCount'],total=total,rows = values)
     
     @expose('json')
-    def getdatavoter(self,**kw):        
-        print kw        
-        user =  request.identity['user'];          
+    def getdatavoter(self,**kw):              
+        user =  request.identity['user'];  
+        self.SearchGridObject = SearchGridObject(**kw)        
         print user.user_id              
-        data,total = self.model.Voter.getListVoterByOwner(user_id_owner=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))        
+        data,total = self.model.Voter.getListVoterByOwner(search=self.SearchGridObject.searchPhrase ,user_id_owner=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))        
         return dict(current= kw['current'] ,rowCount= kw['rowCount'],total=total,rows = data)
     
     
