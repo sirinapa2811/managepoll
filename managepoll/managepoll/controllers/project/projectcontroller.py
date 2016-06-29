@@ -40,7 +40,7 @@ class ProjectController(TGController):
     
     
     @expose()
-    def savesurfver(self,**kw):
+    def saveproject(self,**kw):
         user =  request.identity['user'];    
         print user.user_id #user_id --login
 
@@ -53,7 +53,7 @@ class ProjectController(TGController):
         print questionproject.name
         print questionproject.description
 
-        redirect('/managepoll/project/managesurfvey',params={'idproject':questionproject.id_question_project})
+        redirect('/managepoll/project/manageproject',params={'idproject':questionproject.id_question_project})
         
        
         
@@ -81,7 +81,7 @@ class ProjectController(TGController):
             print "don't have kw"    
         #g = model.QuestionProjectType.getAll(act = 1)
         questionType = self.model.QuestionType.getAll(act = 1)
-        return dict(page ='managesurfvey', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
+        return dict(page ='edit', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
     
     @expose('managepoll.templates.project.dragdroptest')
     def dragdroptest(self,**kw):
