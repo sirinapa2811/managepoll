@@ -109,7 +109,7 @@
 
         /*jshint -W018*/
         firstHeadRow.children().each(function ()
-        {
+        {	console.log($(this).data());
             var $this = $(this),
                 data = $this.data(),
                 column = {
@@ -163,19 +163,19 @@
     */
 
     function loadData()
-    {
+    {	console.log("loadData");
         var that = this;
 
         this.element._bgBusyAria(true).trigger("load" + namespace);
         showLoading.call(this);
-
+        
         function containsPhrase(row)
         {
             var column,
                 searchPattern = new RegExp(that.searchPhrase, (that.options.caseSensitive) ? "g" : "gi");
 
             for (var i = 0; i < that.columns.length; i++)
-            {
+            {	
                 column = that.columns[i];
                 if (column.searchable && column.visible &&
                     column.converter.to(row[column.id]).search(searchPattern) > -1)
@@ -188,7 +188,7 @@
         }
 
         function update(rows, total)
-        {
+        {	console.log("update : " );
             that.currentRows = rows;
             setTotals.call(that, total);
 
@@ -196,16 +196,16 @@
             {
                 that.selectedRows = [];
             }
-
+            
             renderRows.call(that, rows);
             renderInfos.call(that);
             renderPagination.call(that);
 
             that.element._bgBusyAria(false).trigger("loaded" + namespace);
         }
-
+        
         if (this.options.ajax)
-        {
+        {	console.log("Ajax : " + this.options.ajax);
             var request = getRequest.call(this),
                 url = getUrl.call(this);
 
@@ -268,14 +268,15 @@
     }
 
     function loadRows()
-    {
+    {	console.log("loadRows");
+    	console.log(this.options.ajax);
         if (!this.options.ajax)
         {
             var that = this,
                 rows = this.element.find("tbody > tr");
 
             rows.each(function ()
-            {
+            {	
                 var $this = $(this),
                     cells = $this.children("td"),
                     row = {};
@@ -581,7 +582,7 @@
     }
 
     function renderRows(rows)
-    {
+    {	console.log("renderRows " + rows.length);
         if (rows.length > 0)
         {
             var that = this,
@@ -592,11 +593,14 @@
                 html = "";
 
             $.each(rows, function (index, row)
-            {
+            {	console.log( row);
+            	
                 var cells = "",
                     rowAttr = " data-row-id=\"" + ((that.identifier == null) ? index : row[that.identifier]) + "\"",
                     rowCss = "";
-
+                
+                
+                
                 if (that.selection)
                 {
                     var selected = ($.inArray(row[that.identifier], that.selectedRows) !== -1),
@@ -625,11 +629,16 @@
                                 column.formatter.call(that, column, row) :
                                     column.converter.to(row[column.id]),
                             cssClass = (column.cssClass.length > 0) ? " " + column.cssClass : "";
+                        console.log("-------value--------"); 
+                        console.log(value); 
+
                         cells += tpl.cell.resolve(getParams.call(that, {
                             content: (value == null || value === "") ? "&nbsp;" : value,
                             css: ((column.align === "right") ? css.right : (column.align === "center") ?
                                 css.center : css.left) + cssClass,
                             style: (column.width == null) ? "" : "width:" + column.width + ";" }));
+                       
+                       //console.log(cells);
                     }
                 });
 
@@ -638,6 +647,8 @@
                     rowAttr += " class=\"" + rowCss + "\"";
                 }
                 html += tpl.row.resolve(getParams.call(that, { attr: rowAttr, cells: cells }));
+                
+                
             });
 
             // sets or clears multi selectbox state
@@ -760,7 +771,7 @@
     }
 
     function renderTableHeader()
-    {
+    {	console.log("renderTableHeader");
         var that = this,
             headerRow = this.element.find("thead > tr"),
             css = this.options.css,
@@ -777,7 +788,7 @@
         }
 
         $.each(this.columns, function (index, column)
-        {
+        {	 
             if (column.visible)
             {
                 var sortOrder = that.sortDictionary[column.id],
@@ -791,6 +802,7 @@
                     css: ((align === "right") ? css.right : (align === "center") ?
                         css.center : css.left) + cssClass,
                     style: (column.width == null) ? "" : "width:" + column.width + ";" }));
+                
             }
         });
 

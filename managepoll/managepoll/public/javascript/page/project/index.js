@@ -43,3 +43,4 @@ var grid =  $("#grid-data").bootgrid({
 $('#frm_survey').validate();
 
 });	
+

@@ -7,7 +7,7 @@ from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tg.exceptions import HTTPFound
 from tg import predicates
 from tg.predicates import has_any_permission, in_any_group
-
+import json
 
 
 
@@ -39,7 +39,9 @@ class LoadDataControllers(TGController):
     def getdataproject(self,**kw):
         print kw        
         user =  request.identity['user'];        
-        values,total = self.model.QuestionProject.getAllByUser(userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))   
+        values,total = self.model.QuestionProject.getFieldByUser(userid=user.user_id,page=(int(kw['current'])-1), page_size=int(kw['rowCount']))   
+        
+        
         print values     
         return dict(current= kw['current'] ,rowCount= kw['rowCount'],total=total,rows = values)
     
