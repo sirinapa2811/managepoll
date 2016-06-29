@@ -1,5 +1,18 @@
 /* Variables */
 /* Mixins */
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 .animate {
   -moz-transition: all 0.1s ease-in;
   -webkit-transition: all 0.1s ease-in;
@@ -8,9 +21,10 @@
 }
 /* Template */
 #master-container {
-  width: 1050px;
+ /*  width: 1050px; 
+ background-color: #808080;*/
   margin: 0 auto;
-  border: 1px solid #cdcdcd;
+  border: 0px solid #cdcdcd;
 }
 #form-container {
   float: left;
@@ -22,7 +36,7 @@
   float: left;
   width: 100%;
   position: relative;
-  border: 1px solid #cdcdcd;
+  border: 0px solid #cdcdcd;
   border-width: 0 1px 0 0;
   right: 60%;
 }
@@ -35,18 +49,18 @@
 }
 .right-col {
   float: left;
-  width: 60%;
+  width: 55%;
   position: relative;
-  left: 60%;
+  left: 68%;
   overflow: hidden;
 }
 /* Tabs */
 .nav-tabs {
-  margin: 0px;
+  margin: 30px;
   padding: 0px;
   border: 1px solid #cdcdcd;
   border-width: 0 0 1px 0;
-  margin-top: 46px;
+  margin-top: 0px;
   position: relative;
 }
 .nav-tabs li:first-child {
