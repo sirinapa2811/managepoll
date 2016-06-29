@@ -27,46 +27,32 @@ class ProjectController(TGController):
         super(ProjectController, self).__init__()
         
         self.model= models
-        self.utility = Utility()
-         
-        
+        self.utility = Utility()        
     
     @expose('managepoll.templates.project.index')
-    def index(self,**kw):               
-        questionprojecttype = self.model.QuestionProjectType.getAll(1)
-        #questionprojecttype = [self.model.QuestionProjectType()]
+    def index(self,**kw):                       
+        questionprojecttype = self.model.QuestionProjectType.getAll(1)        
         return dict(page ='index',projecttype = questionprojecttype,idproject = None)   
-    
     
     
     @expose()
     def saveproject(self,**kw):
-        user =  request.identity['user'];    
-        print user.user_id #user_id --login
+        user =  request.identity['user'];           
 
         questionproject = self.model.QuestionProject(**kw)
-
         questionproject.user_id = user.user_id
-        questionproject.save()
-        
-        print questionproject.id_question_project
-        print questionproject.name
-        print questionproject.description
+        questionproject.save()     
 
-        redirect('/managepoll/project/manageproject',params={'idproject':questionproject.id_question_project})
-        
+        redirect('/managepoll/project/edit',params={'idproject':questionproject.id_question_project})        
        
         
     @expose()
     def delete(self,**kw):
         print 'Delete : Project ID :', kw['idproject']
         self.models.QuestionProject.deleteById(kw['idproject'])
-        redirect('/surfvey')
+        redirect('/index')
         
-    
-   
-    
-    
+        
     @expose('managepoll.templates.project.manageproject')
     def edit(self,**kw):
         print '......................'
@@ -74,18 +60,12 @@ class ProjectController(TGController):
         
         questionproject = self.model.QuestionProject()
         
-        if('idproject' in kw):
-            print kw['idproject']
+        if('idproject' in kw):           
             questionproject = self.model.QuestionProject.getId(kw['idproject'])
         else :
             print "don't have kw"    
         #g = model.QuestionProjectType.getAll(act = 1)
         questionType = self.model.QuestionType.getAll(act = 1)
         return dict(page ='edit', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
-    
-    @expose('managepoll.templates.project.dragdroptest')
-    def dragdroptest(self,**kw):
-        return dict(page ='dragdroptest',idproject = kw['idproject'])
-    
-    
+   
     
