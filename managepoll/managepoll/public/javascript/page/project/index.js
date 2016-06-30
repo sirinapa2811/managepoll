@@ -1,7 +1,7 @@
 $(document).ready(function() { 
 	
 var grid =  $("#grid-data").bootgrid({
-    ajax: true,
+	ajax: true,
     post: function ()
     {
         /* To accumulate custom parameter with the request object */
@@ -17,9 +17,7 @@ var grid =  $("#grid-data").bootgrid({
         	//debugger;
         	//console.log(row);
         	return '<button type="button" class="btn btn-primary command-edit" data-row-id="' + row.id_question_project + '" data-row-name="' + row.name +'"><span class="fa fa-pencil"></span></button> ' + 
-            	   '<button type="button" class="btn btn-default command-delete" data-row-id="' + row.id_question_project + '" data-row-name="' + row.name +'"><span class="fa fa-trash-o"></span></button>' ;
-
-     	   		   
+            	   '<button type="button" class="btn btn-default command-delete" data-row-id="' + row.id_question_project + '" data-row-name="' + row.name +'"><span class="fa fa-trash-o"></span></button>' ; 	   		   
         }
     }
   
@@ -37,9 +35,7 @@ var grid =  $("#grid-data").bootgrid({
         window.location.assign("/managepoll/project/delete?idproject=" + $(this).data("row-id"))
 
     });
-   
 });
-
 $('#frm_survey').validate();
 
 });	
