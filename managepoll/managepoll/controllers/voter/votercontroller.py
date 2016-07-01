@@ -186,6 +186,60 @@ class VoterController(TGController):
              
         redirect('/managepoll/voter')
         
+    @expose('managepoll.templates.voter.indextest')
+    def indextest(self):    
+        return dict(page = 'voter',idproject=None)
+    
+    
+    @expose('managepoll.templates.voter.votertest')
+    def voterstest(self,*args,**kw):
+        reload(sys).setdefaultencoding('utf8')   
+        
+        voterObject = VoterObject()        
+        print kw
+        
+        if('idvoter' in kw):
+            print kw
+            print "Edit voter"
+            voter = self.model.Voter.getId(kw['idvoter'])
+            voterObject.setVoter(voter)
+            #employment = model.EmploymentDetail.getId(kw['idvoter'])
+            
+        print "voters : lang"
+        
+        self.lang = self.model.Languages.getAll()
+        print self.lang
+        self.marriageStatus = self.model.MarriageStatus.getAll(act=1)
+        self.gender = self.model.Gender.getAll(act=1)
+        self.tel = self.model.TelephoneType.getAll(act=1)
+        self.religion = self.model.ReligionType.getAll(act=1)
+        self.national = self.model.NationalityType.getAll(act=1)
+        self.race = self.model.RaceType.getAll(act=1)
+        self.condition = self.model.LivingConditionType.getAll(act=1)
+        self.employmentstatus = self.model.EmploymentType.getAll(act=1)
+        self.listConutry = self.model.FixCountry.getAll(active=1)
+        self.telephone = self.model.TelephoneType.getAll(act=1)
+        self.education = self.model.EducationType.getAll(act=1)
+        self.addresstype = self.model.AddressType.getAll(act=1)
+            
+        
+        return dict(page = 'votertest',
+                    lang = self.lang,
+                    marriageStatus = self.marriageStatus,
+                    gender = self.gender,
+                    tel = self.tel,
+                    religion = self.religion,
+                    national = self.national,
+                    race = self.race,
+                    condition = self.condition,
+                    employmentstatus = self.employmentstatus,
+                    listConutry = self.listConutry,
+                    telephone = self.telephone,
+                    education = self.education,
+                    addresstype = self.addresstype,
+                    
+                    voter = voterObject,
+                    idproject=None)
 
     
     

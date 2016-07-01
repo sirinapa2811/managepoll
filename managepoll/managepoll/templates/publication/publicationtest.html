@@ -1,0 +1,302 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <xi:include href="${tg.url('master/mymaster.html')}" />
+
+<head>
+  <title></title>
+ 	
+ 		
+ 	<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css"/>
+ 	
+ 	<!-- BEGIN THEME STYLES -->
+    <link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
+	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
+	<link href="${tg.url('/theme/assets/admin/layout/css/layout.css')}" rel="stylesheet" type="text/css"/> 
+ 	
+ 	
+ 	<script src="${tg.url('/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js')}" type="text/javascript"></script>
+ 	
+	<!-- <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script> -->
+	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+	
+
+  	<script src="${tg.url('/_pluggable/managepoll/javascript/page/testnewtemplate/publicationtest.js')}"></script>
+
+</head>
+<body>
+<input type = "hidden" name = "id_question_project" id = "id_question_project" value = "${questionoption.id_question_project}"/> 
+<input type = "hidden" name = "id_question_option" id = "id_question_option" value = "${questionoption.id_question_option}"/>
+ 
+<div class="main">
+      <div class="container">
+      	<div class="row service-box">
+      		<div class="content-page">
+	      		
+	      		<div class="row">
+		      		 ${submenu()}
+		      		 <div class="col-md-9 sidebar-content ">
+				 		<div class="row">
+							<div class="col-md-11">
+								<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="/managepoll/publication/savepublication" method="post" id="save_publication"> 
+									<div class="col-sm-12">
+										<h2><span lang="oth">create_publication</span></h2>
+									</div>
+									<div class="form-group">
+										<div class="row">
+									   		<label for="name" class="control-label col-sm-2" ><span lang="oth">name</span></label>
+									    	<div class="col-sm-10">
+									    		<input type="text" class="form-control" id = "name_publication" name="name_publication" value = "${questionoption.name_publication}" data-rule-required = "true" />
+									    	</div>
+									    </div>
+								    </div>
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="theme" class="control-label col-sm-2" ><span lang="oth">theme</span></label>
+									    	<div class="col-sm-10">
+									    		<select id ="id_question_theme" name = "id_question_theme" class="select2 form-control" value ="${questionoption.id_question_theme}" data-rule-required = "true">
+									    			<option value = "">Select ..</option>
+									    			<py:for each="r in questionthem">
+									    			
+									    				<py:if test="r.id_question_theme  == questionoption.id_question_theme"> 
+									    					<option value = "${r.id_question_theme}" selected="selected" >${r.description}</option>
+									        			</py:if>
+									        			
+									    				<py:if test="r.id_question_theme  != questionoption.id_question_theme">
+									    					<option value = "${r.id_question_theme}"  >${r.description}</option>
+									        			</py:if>
+									    			</py:for>
+									    			
+									    			
+									    		
+									    		</select>	
+									    	</div>
+									    </div>
+								    </div>
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="shownav" class="control-label col-sm-2" ><span lang="oth">show_navigator</span></label>
+									    	<div class="col-sm-2">    	
+									    		<input type="radio" name="show_navigator" value="1" py:attrs="h.checked(1,questionoption.show_navigator,'checked')" /> <span lang="oth">show_navigator_yes</span>
+									    	</div>
+									    	<div class="col-sm-2">
+									    		<input type="radio" name="show_navigator" value="0" py:attrs="h.checked(0,questionoption.show_navigator,'checked')" /> <span lang="oth">show_navigator_no</span>  		
+									    	</div>
+									    	<div class="col-sm-6">
+									    	</div>
+									    </div>
+								    </div>
+								    
+								    
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="showscore" class="control-label col-sm-2" ><span lang="oth">show_score</span></label>
+									    	<div class="col-sm-2">   
+									    		<input type="radio" name="show_score" value="1" py:attrs="h.checked(1,questionoption.show_score,'checked')"/> <span lang="oth">show_navigator_yes</span>
+									    	</div>
+									    	<div class="col-sm-2">
+									    		<input type="radio" name="show_score" value="0" py:attrs="h.checked(0,questionoption.show_score,'checked')"/> <span lang="oth">show_navigator_no</span>  		
+									    	</div>
+									    	<div class="col-sm-6">
+									    	</div>
+									    </div>
+								    </div>
+								 
+								
+								    
+								 
+								    
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="closetype" class="control-label col-sm-2" ><span lang="oth">close_type</span></label>
+									    	<div class="col-sm-10">
+									    		<select id ="id_close_type" name = "id_close_type" class="select2 form-control" data-rule-required = "true">
+									    			<option value = "" >Select ..</option>
+									    			<py:for each="c in closetype">
+									    				<py:if test="c.id_close_type  == questionoption.id_close_type">
+									    					<option value = "${c.id_close_type}" selected="selected" >${c.description} </option>
+									        			</py:if>
+									        			
+									    				<py:if test="c.id_close_type  != questionoption.id_close_type">
+									    					<option value = "${c.id_close_type}"  >${c.description}</option>
+									        			</py:if>
+									    			</py:for>	    			
+									    	</select>	    		
+									    	</div>
+									    </div>
+								    </div>
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="randomtype" class="control-label col-sm-2" ><span lang="oth">random_type</span></label>
+									    	<div class="col-sm-10">
+									    		<select id ="id_fix_random_type" name ="id_fix_random_type" class="select2 form-control" value ="${questionoption.id_fix_random_type}" data-rule-required = "true">
+									    			<option value = "" >Select ..</option>
+									    			<py:for each="r in randomtype">
+									    				<option value = "${r.id_fix_random_type}"  py:attrs="h.checked(r.id_fix_random_type,questionoption.id_fix_random_type,'selected')"   >${r.description}</option>
+									    			</py:for>
+									    		</select>
+									    	</div>
+									    </div>
+								    </div>
+								    
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="randomans" class="control-label col-sm-2" ><span lang="oth">random_answer</span></label>
+									    	<div class="col-sm-2">
+									    		<input type="radio" name="random_answer" value="1" py:attrs="h.checked(1,questionoption.random_answer,'checked')" /> <span lang="oth">show_navigator_yes</span>
+									    	</div>
+									    	<div class="col-sm-2">
+									    		<input type="radio" name="random_answer" value="0" py:attrs="h.checked(0,questionoption.random_answer,'checked')"/> <span lang="oth">show_navigator_no</span>
+									    	</div>
+									    	<div class="col-sm-6">
+									    	</div>
+									    </div>
+								    </div>
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="qnum" class="control-label col-sm-2" ><span lang="oth">use_question_no</span></label>
+									    	<div class="col-sm-10">
+									    		<input type="number" class="form-control" name="use_question_no" value = "${questionoption.use_question_no}" data-rule-required = "true"/>
+									    	</div>
+									    </div>
+								    </div>
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="time" class="control-label col-sm-2" ><span lang="oth">duration_time</span></label>
+									    	<div class="col-sm-10">
+									    		<input type="number" class="form-control" name="duration_time"  value = "${questionoption.duration_time}" data-rule-required = "true" />
+									    	</div>
+									    </div>
+								    </div>
+								    <div class="form-group">
+									    <div class="row">
+									   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">email_template</span></label>
+									    				
+											<div class="col-md-10">
+												<div class="input-group">
+													<select class="select2 form-control" name="id_question_invitation" id ="id_question_invitation" value ="${questionoption.id_question_invitation}" data-rule-required = "true">
+									    				<option value = "">select ..</option>							    			
+									    					<py:for each="e in emailtemplate">
+									    					<py:if test="e.id_question_invitation  == questionoption.id_question_invitation">
+									    				<option value = "${e.id_question_invitation}" selected="selected" >${e.name_content}</option>
+									        				</py:if>							        			
+									    					<py:if test="e.id_question_invitation  != questionoption.id_question_invitation">
+									    				<option value = "${e.id_question_invitation}"  >${e.name_content}</option>
+									        				</py:if>
+									    					</py:for>    			
+													</select> 
+													<span class="input-group-btn">
+													<a href="#" class="btn btn-info" id = "add_invitation" role="button"><span class="glyphicon glyphicon-plus"></span></a>
+													
+													</span>
+												</div>
+												<!-- /input-group -->
+											</div>										
+									    </div>
+								    </div>				    
+								 		
+								    <div class="form-group ">
+									    <div class="row">
+									   		<label for="date" class="control-label col-sm-2" ><span lang="oth">start_date</span></label>
+									    	<div class="col-sm-10">
+									    		<div class="input-group">
+									    			<input type="text" id ="activate_date" name="activate_date" class="datepicker form-control" value = "${questionoption.activate_date.strftime('%d/%m/%Y')}"  data-rule-required = "true"/>
+									    				<span class="input-group-btn">
+															<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+														</span>
+									       		</div>
+									    	</div>
+									    </div>
+								    </div>
+								    <div class="form-group ">
+									    <div class="row">
+									   		<label for="date" class="control-label col-sm-2" ><span lang="oth">expire_date</span></label>
+									   		<div class="col-sm-10">
+									   			<div class="input-group">
+									    			<input type="text" id="expire_date" name="expire_date" class="datepicker form-control"  value = "${questionoption.expire_date.strftime('%d/%m/%Y')}"  data-rule-required = "true"/>
+									       				<span class="input-group-btn">
+															<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+														</span>
+									       		</div>
+									       	</div>
+									    </div>
+								    </div>
+								   
+								    <div class="form-group ">
+									    <div class="row">
+									   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">redirect_url</span></label>
+									    	<div class="col-sm-10">
+									    		<input type="text" class="form-control" name="redirect_url" value = "${questionoption.redirect_url}" data-rule-required = "true"/>
+									    	</div>
+									    </div>
+								    </div>
+								    <div class="form-group">
+									    <div class="row">
+									        <label for="message" class="control-label col-sm-2" ><span lang="oth">welcome_message</span></label>
+									  		<div class="col-sm-10">
+									  			<textarea id="bodyWelcome" cols="70" rows="10" name="welcome_message">${questionoption.welcome_message}
+									  			</textarea>
+									      	</div>  
+									    </div>  	
+									</div>
+								    <div class="form-group">
+									    <div class="row">
+								        <label for="message" class="control-label col-sm-2" ><span lang="oth">goodbye_message</span></label>
+									  		<div class="col-sm-10">
+									  			<textarea id="bodyGoodbye" cols="70" rows="10" name="end_message">${questionoption.end_message}
+									  			</textarea>
+									      	</div>
+								      	</div>    	
+									</div>
+									<div class="form-group">
+										<div class="row">
+									        <label for="message" class="control-label col-sm-2" ><span lang="oth">header_message</span></label>
+									  		<div class="col-sm-10">
+									  			<textarea id="bodyHeader" cols="70" rows="10" name="header_message">${questionoption.header_message}
+									  			</textarea>
+									      	</div>  
+								      	</div>  	
+									</div>
+									<div class="form-group">
+										<div class="row">
+									        <label for="message" class="control-label col-sm-2" ><span lang="oth">footer_message</span></label>
+									  		<div class="col-sm-10">
+									  			<textarea id="bodyFooter" cols="70" rows="10" name="footer_message">${questionoption.footer_message}
+									  			</textarea>
+									      	</div>  
+								      	</div>  	
+									</div>
+								    <div class="form-group ">
+								    	<div class="row">
+								    	<div class="col-sm-2"></div>
+								   		   	<div class="col-sm-10">
+								   		   	
+								   		   		<input type="submit" class="btn btn-success" id = "save" value="save"/>   				
+								   				<a href="#" class="btn btn-info" id = "btn_cancel" role="button">cancel</a>
+								   				
+								   			</div>
+								    	</div>
+								    </div>
+								
+								
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+							
+       
+</body>
+</html>
+
+

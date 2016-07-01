@@ -15,7 +15,8 @@ from tgext.admin.controller import AdminController
 from tgext.pyutilservice import Utility
 import sys
 from datetime import date,datetime
-
+from surveyobject import *
+import json
 
 
 class ProjectController(TGController):
@@ -67,5 +68,36 @@ class ProjectController(TGController):
         #g = model.QuestionProjectType.getAll(act = 1)
         questionType = self.model.QuestionType.getAll(act = 1)
         return dict(page ='edit', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
-   
+    
+    
+    @expose('json')
+    def savequestion(self,**kw):
+        projectObject = ProjectObject()      
+        projectObject.checkQuestion(**kw)        
+
+        
+        return dict(idproject = projectObject.idproject)
+    
+
+    @expose('managepoll.templates.project.indextest')
+    def indextest(self,**kw):                       
+        questionprojecttype = self.model.QuestionProjectType.getAll(1)        
+        return dict(page ='indextest',projecttype = questionprojecttype,idproject = None)   
+    
+    
+    @expose('managepoll.templates.project.edittest')
+    def edittest(self,**kw):
+        print '......................'
+        print kw
+        
+        questionproject = self.model.QuestionProject()
+        
+        if('idproject' in kw):           
+            questionproject = self.model.QuestionProject.getId(kw['idproject'])
+        else :
+            print "don't have kw"    
+        #g = model.QuestionProjectType.getAll(act = 1)
+        questionType = self.model.QuestionType.getAll(act = 1)
+        return dict(page ='edittest', questionproject = questionproject,questionType = questionType,idproject = kw['idproject'])
+    
     

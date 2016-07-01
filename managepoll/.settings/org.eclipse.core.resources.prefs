@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/sirinapa2811/managepoll.git
 eclipse.preferences.version=1
 encoding//managepoll/__init__.py=utf-8
 encoding//managepoll/controllers/__init__.py=utf-8
@@ -19,27 +21,6 @@ encoding//managepoll/templates/__init__.py=utf-8
 encoding//managepoll/templates/master/mymaster.html=UTF-8
 encoding//managepoll/templates/master/mymaster2.html=UTF-8
 encoding//managepoll/templates/master/mymaster_a.html=UTF-8
+encoding//managepoll/templates/master/mymastertest.html=UTF-8
+encoding//managepoll/templates/master/submenu.html=UTF-8
 encoding//managepoll/templates/publication/__init__.py=utf-8
-=======
-eclipse.preferences.version=1
-encoding//managepoll/__init__.py=utf-8
-encoding//managepoll/controllers/__init__.py=utf-8
-encoding//managepoll/controllers/invitation/__init__.py=utf-8
-encoding//managepoll/controllers/invitation/invitationcontroller.py=utf-8
-encoding//managepoll/controllers/project/__init__.py=utf-8
-encoding//managepoll/controllers/project/projectcontroller.py=utf-8
-encoding//managepoll/controllers/publication/__init__.py=utf-8
-encoding//managepoll/controllers/publication/publicationcontroller.py=utf-8
-encoding//managepoll/controllers/root.py=utf-8
-encoding//managepoll/controllers/script/__init__.py=utf-8
-encoding//managepoll/controllers/script/loaddatacontrollers.py=utf-8
-encoding//managepoll/controllers/voter/__init__.py=utf-8
-encoding//managepoll/controllers/voter/votercontroller.py=utf-8
-encoding//managepoll/model/__init__.py=utf-8
-encoding//managepoll/public/__init__.py=utf-8
-encoding//managepoll/templates/__init__.py=utf-8
-encoding//managepoll/templates/master/mymaster.html=UTF-8
-encoding//managepoll/templates/master/mymaster2.html=UTF-8
-encoding//managepoll/templates/master/mymaster_a.html=UTF-8
-encoding//managepoll/templates/publication/__init__.py=utf-8
->>>>>>> branch 'master' of https://github.com/sirinapa2811/managepoll.git

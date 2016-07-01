@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+   	<xi:include href="${tg.url('master/mymastertest.html')}" />
+	<xi:include href="${tg.url('master/submenu.html')}" />
+
+<head>
+  <title></title>
+
+	<!-- BEGIN THEME STYLES -->
+    <link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
+	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
+	<link href="${tg.url('/theme/assets/admin/layout/css/layout.css')}" rel="stylesheet" type="text/css"/> 
+	
+  	<script src="${tg.url('/_pluggable/managepoll/javascript/page/testnewtemplate/publicationindextest.js')}"></script>
+  
+</head>
+
+<body>
+<input type="hidden" class="form-control" name= "id_question_project" id = "id_question_project"  value = "${idproject}" />
+
+<div class="main">
+      <div class="container">
+      	<div class="row service-box">
+      		<div class="content-page">
+	      		
+	      		<div class="row">
+		      		 ${submenu()}
+		      		 <div class="col-md-9 sidebar-content ">
+				 		<div class="row">
+							<div class="col-md-11">
+								<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="" method="post" id=""> 
+									<div class="col-sm-12">
+										<h2>Publication List</h2>
+									
+										<a href="#" class="btn btn-info" id = "addpublication" role="button"><span lang="oth" class="glyphicon glyphicon-plus"> create_publication </span></a>
+									</div>								
+									
+									<table id="grid-data" class="table table-condensed table-hover table-striped">
+										<thead>
+											<tr>								
+												<th data-column-id="name_publication" >Name Publication</th>
+												<th data-column-id="activate_date">Activate Date</th>
+												<th data-column-id="expire_date" >Expire Date</th>
+												<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>									
+											</tr>
+										</thead>
+									</table>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+  
+
+
+ 
+ 
+
+
+</body>
+</html>

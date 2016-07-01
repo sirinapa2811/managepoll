@@ -113,5 +113,46 @@ class PublicationController(TGController):
         redirect('/managepoll/publication/index',params={'idproject':questionoption.id_question_project})
         
     
+    @expose('managepoll.templates.publication.indextest')   
+    def indextest(self,**kw):
+        print kw
+        return dict(page = 'indextest',idproject = kw['idproject'] )
+    
+    
+    @expose('managepoll.templates.publication.publicationtest')
+    def publicationtest(self,**kw):
+        
+        
+        reload(sys).setdefaultencoding('utf8')      #set ค่า เป็น utf8 สำหรับฟังชั่นนี้
+        user =  request.identity['user'];    
 
+        
+        questionoption = self.model.QuestionOption()
+        questionoption.id_question_project = kw['idproject']
+        
+        questionoption.activate_date = datetime.today() #today for add option
+        questionoption.expire_date = self.utility.plusDate(datetime.today(),30) #plusDate30day for add option
+       
+        emailtemplate = self.model.Invitation()
+        randomtype = self.model.RandomType()
+        closetype = self.model.CloseType()
+        questionthem = self.model.QuestionTheme()
+        
+        if('idoption' in kw):
+            print "Edit option"
+            questionoption = self.model.QuestionOption.getId(kw['idoption'])
+            
+        questionthem = self.model.QuestionTheme.getAll(act = 1)    
+        closetype = self.model.CloseType.getAll(active = 1)
+        randomtype = self.model.RandomType.getAll(active = 1)
+        emailtemplate, total = self.model.Invitation.getByUser(user.user_id)
+        
+        return dict(page='publicationtest',
+                    questionoption = questionoption,
+                    emailtemplate = emailtemplate, 
+                    randomtype=randomtype, 
+                    closetype=closetype, 
+                    questionthem=questionthem,
+                    idproject = kw['idproject']
+                     )
     

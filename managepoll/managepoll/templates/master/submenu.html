@@ -1,0 +1,41 @@
+<html xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      py:strip="">
+<py:def function="submenu">
+  <div id="header">
+	
+	<div class="col-md-3 sidebar-content ">
+ 		<ul class="ver-inline-menu tabbable margin-bottom-25">
+			
+			
+			<li class="${('', 'active')[value_of('page') == 'indextest']}">
+               	<a href="${tg.url('/managepoll/project/indextest')}" >
+               	<i class="fa fa-support fa"></i> <span lang="oth">survey</span> </a>
+               		<!-- <ul > -->
+          				<py:if test = "idproject">
+	                	 	<li class="${('', 'active')[value_of('page') == 'edittest']}" >
+	                        	<a href="${tg.url('/managepoll/project/edittest?idproject=')}${idproject}" >
+	                        	<i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_question </span></a>
+	                    	</li>
+		                    <li class="${('', 'active')[value_of('page') == 'indextest']}">
+	                        	<a href="${tg.url('/managepoll/publication/indextest?idproject=')}${idproject}">
+	                        	<i class="glyphicon glyphicon-plus"></i> <span lang="oth">create_publication</span></a>
+	                    	</li>
+                 		</py:if>
+               		<!-- </ul>    -->           
+           	</li>               
+           	<li class="${('', 'active')[value_of('page') == 'voter']}">
+           		<a href="${tg.url('/managepoll/voter/indextest')}">
+           		<i class="fa fa-support fa"></i> <span lang="oth">add_volunteer</span></a>
+           	</li>
+           	<li class="${('', 'active')[value_of('page') == 'invitation']}">
+                <a href="${tg.url('/managepoll/invitation/indextest')}">
+                <i class="fa fa-support fa"></i> <span lang="oth">add_invitation</span></a>
+           	</li>     
+			 
+		</ul>
+ 	  </div>  
+
+  </div>
+</py:def>
+</html>

@@ -82,5 +82,38 @@ class InvitationController(TGController):
    
 
         redirect('/managepoll/invitation/index')
+        
+        
+    @expose('managepoll.templates.invitation.indextest')
+    def indextest(self,**kw):
+        user =  request.identity['user'];
+        print user.user_id
+                
+        return dict(page = 'indextest',idproject = None)
+        
+    @expose('managepoll.templates.invitation.invitationtest')
+    def invitationtest(self,**kw):
+       
+        print kw 
+        
+        
+        reload(sys).setdefaultencoding("utf-8");
+        invitation = self.model.Invitation()
+        self.emailtemplate = self.model.EmailTemplate()
+        if('idinvitation' in kw):
+            print kw['idinvitation']            
+            #           
+            invitation = self.model.Invitation.getId(kw['idinvitation'])  
+            
+            
+        else:
+            self.emailtemplate = self.model.EmailTemplate.getTemplateBy(5); 
+            
+            invitation.name_content  = self.emailtemplate.sender
+            invitation.from_name =  self.emailtemplate.sender
+            invitation.subject =  self.emailtemplate.subject
+            invitation.content =  self.emailtemplate.content_template
+         
+        return dict(page='invitationtest', invitation = invitation,idproject = None)
     
         
