@@ -109,7 +109,7 @@
 
         /*jshint -W018*/
         firstHeadRow.children().each(function ()
-        {	console.log($(this).data());
+        {	 
             var $this = $(this),
                 data = $this.data(),
                 column = {
@@ -163,7 +163,7 @@
     */
 
     function loadData()
-    {	console.log("loadData");
+    {	 
         var that = this;
 
         this.element._bgBusyAria(true).trigger("load" + namespace);
@@ -188,7 +188,7 @@
         }
 
         function update(rows, total)
-        {	console.log("update : " );
+        {	 
             that.currentRows = rows;
             setTotals.call(that, total);
 
@@ -205,7 +205,7 @@
         }
         
         if (this.options.ajax)
-        {	console.log("Ajax : " + this.options.ajax);
+        {	 
             var request = getRequest.call(this),
                 url = getUrl.call(this);
 
@@ -268,8 +268,8 @@
     }
 
     function loadRows()
-    {	console.log("loadRows");
-    	console.log(this.options.ajax);
+    {	 
+    	 
         if (!this.options.ajax)
         {
             var that = this,
@@ -582,7 +582,7 @@
     }
 
     function renderRows(rows)
-    {	console.log("renderRows " + rows.length);
+    {	 
         if (rows.length > 0)
         {
             var that = this,
@@ -593,7 +593,7 @@
                 html = "";
 
             $.each(rows, function (index, row)
-            {	console.log( row);
+            {	//console.log( row);
             	
                 var cells = "",
                     rowAttr = " data-row-id=\"" + ((that.identifier == null) ? index : row[that.identifier]) + "\"",
@@ -629,8 +629,8 @@
                                 column.formatter.call(that, column, row) :
                                     column.converter.to(row[column.id]),
                             cssClass = (column.cssClass.length > 0) ? " " + column.cssClass : "";
-                        console.log("-------value--------"); 
-                        console.log(value); 
+                        //console.log("-------value--------"); 
+                        //console.log(value); 
 
                         cells += tpl.cell.resolve(getParams.call(that, {
                             content: (value == null || value === "") ? "&nbsp;" : value,
@@ -771,7 +771,7 @@
     }
 
     function renderTableHeader()
-    {	console.log("renderTableHeader");
+    {	//console.log("renderTableHeader");
         var that = this,
             headerRow = this.element.find("thead > tr"),
             css = this.options.css,
@@ -788,7 +788,8 @@
         }
 
         $.each(this.columns, function (index, column)
-        {	 
+        {	
+        
             if (column.visible)
             {
                 var sortOrder = that.sortDictionary[column.id],
@@ -805,7 +806,7 @@
                 
             }
         });
-
+         
         headerRow.html(html);
 
         if (sorting)
@@ -1375,7 +1376,7 @@
             cell: "<td class=\"{{ctx.css}}\" style=\"{{ctx.style}}\">{{ctx.content}}</td>",
             footer: "<div id=\"{{ctx.id}}\" class=\"{{css.footer}}\"><div class=\"row\"><div class=\"col-sm-6\"><p class=\"{{css.pagination}}\"></p></div><div class=\"col-sm-6 infoBar\"><p class=\"{{css.infos}}\"></p></div></div></div>",
             header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-12 actionBar\"><p class=\"{{css.search}}\"></p><p class=\"{{css.actions}}\"></p></div></div></div>",
-            headerCell: "<th data-column-id=\"{{ctx.column.id}}\" class=\"{{ctx.css}}\" style=\"{{ctx.style}}\"><a href=\"javascript:void(0);\" class=\"{{css.columnHeaderAnchor}} {{ctx.sortable}}\"><span class=\"{{css.columnHeaderText}}\">{{ctx.column.text}}</span>{{ctx.icon}}</a></th>",
+            headerCell: "<th data-column-id=\"{{ctx.column.id}}\" class=\"{{ctx.css}}\" style=\"{{ctx.style}}\"><a href=\"javascript:void(0);\" class=\"{{css.columnHeaderAnchor}} {{ctx.sortable}}\"><span class=\"{{css.columnHeaderText}}\" lang=\"oth\">{{ctx.column.text}}</span>{{ctx.icon}}</a></th>",
             icon: "<span class=\"{{css.icon}} {{ctx.iconCss}}\"></span>",
             infos: "<div class=\"{{css.infos}}\">{{lbl.infos}}</div>",
             loading: "<tr><td colspan=\"{{ctx.columns}}\" class=\"loading\">{{lbl.loading}}</td></tr>",
@@ -1384,7 +1385,7 @@
             paginationItem: "<li class=\"{{ctx.css}}\"><a data-page=\"{{ctx.page}}\" class=\"{{css.paginationButton}}\">{{ctx.text}}</a></li>",
             rawHeaderCell: "<th class=\"{{ctx.css}}\">{{ctx.content}}</th>", // Used for the multi select box
             row: "<tr{{ctx.attr}}>{{ctx.cells}}</tr>",
-            search: "<div class=\"{{css.search}}\"><div class=\"input-group\"><span class=\"{{css.icon}} input-group-addon {{css.iconSearch}}\"></span> <input type=\"text\" class=\"{{css.searchField}}\" placeholder=\"{{lbl.search}}\" /></div></div>",
+            search: "<div class=\"{{css.search}}\"><div class=\"input-group\"><span class=\"{{css.icon}} input-group-addon {{css.iconSearch}}\"></span> <input type=\"text\" class=\"{{css.searchField}}\" placeholder=\"{{lbl.search}}\" lang=\"oth\"/></div></div>",
             select: "<input name=\"select\" type=\"{{ctx.type}}\" class=\"{{css.selectBox}}\" value=\"{{ctx.value}}\" {{ctx.checked}} />"
         }
     };

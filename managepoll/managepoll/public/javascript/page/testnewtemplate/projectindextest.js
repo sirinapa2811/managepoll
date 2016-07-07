@@ -10,8 +10,12 @@ var grid =  $("#grid-data").bootgrid({
         };
     },
     url: "/managepoll/script/getdataproject",
-
+    labels: {
+    	search: 'search',
+    	refresh: function() { return window.lang.translate('refresh'); }
+    },
     formatters: {
+    	
         "commands": function(column, row)
         {
         	//debugger;
