@@ -29,19 +29,19 @@
         {
         	
            //alert("Edit : " + $(this).data("row-name"));
-           window.location.assign("/managepoll/voter/voters?idvoter=" + $(this).data("row-id"))
+           window.location.assign("/managepoll/voter/votertest?idvoter=" + $(this).data("row-id"))
             
         }).end().find(".command-delete").on("click", function(e)
         {
             alert("Delete ID :" + $(this).data("row-id") + "?");
-            //window.location.assign("/managepoll/deletesurfvey?idproject=" + $(this).data("row-id"))
+            window.location.assign("/managepoll/voter/deletevoter?idproject=" + $(this).data("row-id"))
            
         
 
         });
     	
     	$("#addvoter").click(function(){
-    		window.location.assign("/managepoll/voter/voters")
+    		window.location.assign("/managepoll/voter/votertest")
     		
     	});
     	

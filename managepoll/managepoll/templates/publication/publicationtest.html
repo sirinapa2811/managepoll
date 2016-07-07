@@ -2,11 +2,12 @@
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <xi:include href="${tg.url('master/mymaster.html')}" />
+   <xi:include href="${tg.url('master/mymastertest.html')}" />
+	<xi:include href="${tg.url('master/submenu.html')}" />
 
 <head>
   <title></title>
- 	
+ 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css"/>
  		
  	<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css"/>
  	
@@ -14,6 +15,9 @@
     <link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
 	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
 	<link href="${tg.url('/theme/assets/admin/layout/css/layout.css')}" rel="stylesheet" type="text/css"/> 
+	
+	<link href="${tg.url('/theme/assets/global/plugins/select2/select2.css')}" rel="stylesheet" type="text/css"/>
+  	<script type="text/javascript" src="${tg.url('/theme/assets/global/plugins/select2/select2.min.js')}"></script>  
  	
  	
  	<script src="${tg.url('/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js')}" type="text/javascript"></script>
@@ -25,10 +29,7 @@
   	<script src="${tg.url('/_pluggable/managepoll/javascript/page/testnewtemplate/publicationtest.js')}"></script>
 
 </head>
-<body>
-<input type = "hidden" name = "id_question_project" id = "id_question_project" value = "${questionoption.id_question_project}"/> 
-<input type = "hidden" name = "id_question_option" id = "id_question_option" value = "${questionoption.id_question_option}"/>
- 
+<body> 
 <div class="main">
       <div class="container">
       	<div class="row service-box">
@@ -40,9 +41,16 @@
 				 		<div class="row">
 							<div class="col-md-11">
 								<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="/managepoll/publication/savepublication" method="post" id="save_publication"> 
-									<div class="col-sm-12">
-										<h2><span lang="oth">create_publication</span></h2>
+									
+									<input type = "hidden" name = "id_question_project" id = "id_question_project" value = "${questionoption.id_question_project}"/> 
+									<input type = "hidden" name = "id_question_option" id = "id_question_option" value = "${questionoption.id_question_option}"/>
+									
+									<div class="form-group">
+										<h3 class="control-label pull-left"><span lang="oth">create_publication</span></h3>
+											
 									</div>
+									
+									
 									<div class="form-group">
 										<div class="row">
 									   		<label for="name" class="control-label col-sm-2" ><span lang="oth">name</span></label>
@@ -57,21 +65,11 @@
 									   		<label for="theme" class="control-label col-sm-2" ><span lang="oth">theme</span></label>
 									    	<div class="col-sm-10">
 									    		<select id ="id_question_theme" name = "id_question_theme" class="select2 form-control" value ="${questionoption.id_question_theme}" data-rule-required = "true">
-									    			<option value = "">Select ..</option>
-									    			<py:for each="r in questionthem">
-									    			
-									    				<py:if test="r.id_question_theme  == questionoption.id_question_theme"> 
-									    					<option value = "${r.id_question_theme}" selected="selected" >${r.description}</option>
-									        			</py:if>
-									        			
-									    				<py:if test="r.id_question_theme  != questionoption.id_question_theme">
-									    					<option value = "${r.id_question_theme}"  >${r.description}</option>
-									        			</py:if>
-									    			</py:for>
-									    			
-									    			
-									    		
-									    		</select>	
+									    				<option value = "" >Select ..</option>
+									    			<py:for each="questiontheme in questionthem">
+									    				<option value = "${questiontheme.id_question_theme}"  py:attrs="h.checked(questiontheme.id_question_theme,questionoption.id_question_theme,'selected')"   >${questiontheme.description} </option>
+									    			</py:for>	
+									    		</select>								    						
 									    	</div>
 									    </div>
 								    </div>
@@ -106,27 +104,16 @@
 									    </div>
 								    </div>
 								 
-								
-								    
-								 
-								    
-								    
 								    <div class="form-group">
 									    <div class="row">
 									   		<label for="closetype" class="control-label col-sm-2" ><span lang="oth">close_type</span></label>
 									    	<div class="col-sm-10">
-									    		<select id ="id_close_type" name = "id_close_type" class="select2 form-control" data-rule-required = "true">
-									    			<option value = "" >Select ..</option>
-									    			<py:for each="c in closetype">
-									    				<py:if test="c.id_close_type  == questionoption.id_close_type">
-									    					<option value = "${c.id_close_type}" selected="selected" >${c.description} </option>
-									        			</py:if>
-									        			
-									    				<py:if test="c.id_close_type  != questionoption.id_close_type">
-									    					<option value = "${c.id_close_type}"  >${c.description}</option>
-									        			</py:if>
-									    			</py:for>	    			
-									    	</select>	    		
+									    		<select id ="id_close_type" name = "id_close_type" class="select2 form-control" value = "${questionoption.id_close_type}" data-rule-required = "true">		
+									    				<option value = "" >Select ..</option>
+									    			<py:for each="closetyped in closetype">
+									    				<option value = "${closetyped.id_close_type}"  py:attrs="h.checked(closetyped.id_close_type,questionoption.id_close_type,'selected')"   >${closetyped.description} </option>
+									    			</py:for>									    						
+									    		</select>	    		
 									    	</div>
 									    </div>
 								    </div>
@@ -136,9 +123,9 @@
 									   		<label for="randomtype" class="control-label col-sm-2" ><span lang="oth">random_type</span></label>
 									    	<div class="col-sm-10">
 									    		<select id ="id_fix_random_type" name ="id_fix_random_type" class="select2 form-control" value ="${questionoption.id_fix_random_type}" data-rule-required = "true">
-									    			<option value = "" >Select ..</option>
-									    			<py:for each="r in randomtype">
-									    				<option value = "${r.id_fix_random_type}"  py:attrs="h.checked(r.id_fix_random_type,questionoption.id_fix_random_type,'selected')"   >${r.description}</option>
+									    				<option value = "" >Select ..</option>
+									    			<py:for each="random in randomtype">
+									    				<option value = "${random.id_fix_random_type}"  py:attrs="h.checked(random.id_fix_random_type,questionoption.id_fix_random_type,'selected')"   >${random.description}</option>
 									    			</py:for>
 									    		</select>
 									    	</div>
@@ -181,22 +168,15 @@
 											<div class="col-md-10">
 												<div class="input-group">
 													<select class="select2 form-control" name="id_question_invitation" id ="id_question_invitation" value ="${questionoption.id_question_invitation}" data-rule-required = "true">
-									    				<option value = "">select ..</option>							    			
-									    					<py:for each="e in emailtemplate">
-									    					<py:if test="e.id_question_invitation  == questionoption.id_question_invitation">
-									    				<option value = "${e.id_question_invitation}" selected="selected" >${e.name_content}</option>
-									        				</py:if>							        			
-									    					<py:if test="e.id_question_invitation  != questionoption.id_question_invitation">
-									    				<option value = "${e.id_question_invitation}"  >${e.name_content}</option>
-									        				</py:if>
-									    					</py:for>    			
+										    				<option value = ""></option>										    			
+										    			<py:for each="emailtemplates in emailtemplate">
+										    				<option value = "${emailtemplates.id_question_invitation}"  py:attrs="h.checked(emailtemplates.id_question_invitation,questionoption.id_question_invitation,'selected')"   >${emailtemplates.name_content}</option>
+										    			</py:for>
 													</select> 
-													<span class="input-group-btn">
-													<a href="#" class="btn btn-info" id = "add_invitation" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-													
-													</span>
-												</div>
-												<!-- /input-group -->
+													<span class="input-group-btn">													
+														<a href="#" class="btn btn-info" id = "add_invitation" role="button"><span class="glyphicon glyphicon-plus"></span></a>
+													</span>													
+												</div>												
 											</div>										
 									    </div>
 								    </div>				    
@@ -273,19 +253,15 @@
 								      	</div>  	
 									</div>
 								    <div class="form-group ">
-								    	<div class="row">
-								    	<div class="col-sm-2"></div>
-								   		   	<div class="col-sm-10">
-								   		   	
-								   		   		<input type="submit" class="btn btn-success" id = "save" value="save"/>   				
-								   				<a href="#" class="btn btn-info" id = "btn_cancel" role="button">cancel</a>
+								    
+								   		   		<a href="#" class="btn btn-sm btn-info pull-left" id = "btn_cancel" role="button">cancel</a>
+								   		   		<input type="submit" class="btn btn-sm btn-success pull-right" id = "save" value="save"/>   				
 								   				
-								   			</div>
-								    	</div>
-								    </div>
-								
-								
-								</form>
+								   				
+								   				
+								   		
+								   	</div>									   	
+								</form>								
 							</div>
 						</div>
 					</div>

@@ -2,10 +2,13 @@
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
- <xi:include href="${tg.url('master/mymaster.html')}" />
+	<xi:include href="${tg.url('master/mymastertest.html')}" />
+	<xi:include href="${tg.url('master/submenu.html')}" />
+	
 <head>
   <title></title>
-  
+  	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css"/>
+  	
   	<!-- BEGIN THEME STYLES -->
    	<link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
 	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
@@ -28,15 +31,22 @@
 				 		<div class="row">
 							<div class="col-md-11">
 								<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="" method="post" id=""> 
-									<div class="col-sm-12">
-										<a href="#" class="btn btn-info" id = "addvoter" role="button"><span lang="oth">add_volunteer</span></a>
+									<div class="form-group">
+									<h3 class="control-label pull-left"><span lang="oth">voters</span></h3>
+										<a href="#" class="btn btn-info pull-right" id = "addvoter" role="button">
+										<span lang="oth">add_volunteer</span>
+									</a>
 									</div>
+									
 								</form>
-								 <table id="grid-data" class="table table-condensed table-hover table-striped">   
+								
+								
+								 <table id="grid-data" class="table table-condensed table-hover table-striped"> 
+								   
 									<thead>
 										<tr>
 											<th data-column-id="email" >email</th> 
-											<th data-column-id="name" >name</th> 
+											<th data-column-id="name" >name</th> 											
 											<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
 											
 											

@@ -159,7 +159,7 @@
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
+        <div class="container">
             
             <div class="navbar-header">
                  
@@ -171,7 +171,7 @@
                 </button>
                 
                 
-                 <a class="navbar-brand" href="index.html">Poll Survey</a>
+                 <a class="navbar-brand" href="/managepoll/project/indextest">Poll Survey</a>
                
                
             </div> 
@@ -179,7 +179,7 @@
        <div class="collapse navbar-collapse navbar-ex1-collapse" id="bs-example-navbar-collapse-1" >
           <div class="row">
             <ul class="nav navbar-nav pull-right"> 	             
-                <li py:if="request.identity"><a href="${tg.url('/account')}"> <span lang="oth">account</span> <span py:if="request.identity"> 	(${request.identity['repoze.who.userid']}) </span>  </a></li>
+                <li py:if="request.identity"><a href="${tg.url('/managepoll/account')}"> <span lang="oth">account</span> <span py:if="request.identity"> 	(${request.identity['repoze.who.userid']}) </span>  </a></li>
    				<li py:if="not request.identity"><a href="${tg.url('/login')}"><span lang="oth">login</span></a></li>
        			<li py:if="request.identity"><a href="${tg.url('/logout_handler')}"><span lang="oth">logout</span></a></li>
                    <li py:if="not request.identity"><a href="${tg.url('/register')}"><span lang="oth">registration</span></a></li>
@@ -210,10 +210,59 @@
     <div py:replace="select('*|text()')"/>
  
   </div>
+ <!-- BEGIN FOOTER -->
+    <div class="footer">
+      <div class="container">
+      	<div class="row">
+      		 <div class="col-md-3">
+      		 
+      		 
+      		 	${h.showbanner('general_page',1 )}
+				
+          	</div>	
+           
+           	 <div class="col-md-3">
+				${h.showbanner('general_page',2 )}
+				
+			 </div>
+          	
+          	<div class="col-md-3">
+				${h.showbanner('general_page',3 )}
+          	</div>
+          	
+          	<div class="col-md-3">
+				${h.showbanner('general_page',4 )}
+          	</div>
+      	</div>
+      	<br/>
+      	<div class="row">
+      		<div class="col-md-2"></div>
+      		<div class="col-md-8">
  
- 
-  
-  
+      		</div>
+      	 
+      		<div class="col-md-2"></div>
+      	</div>
+      	
+      	
+      	 <div class="row">
+     	<div class="col-md-5">
+     		<p>Copyright &copy; PollSurfvey ${h.current_year()} <a href="${tg.url('/policy')}"><span lang="oth">privacy_policy</span></a> | <a href="${tg.url('/service')}"><span lang="oth">terms_of_service</span></a>
+            <span lang="oth">version </span>${h.getVerstion()} </p>
+     	</div>
+     	<div class="col-md-5">
+     	${h.likeShareWithFacebook( )}
+     	</div>
+     	<div class="col-md-2">
+     		<p>${h.verifiedSSL()}</p>
+     		
+     	</div>
+     </div>
+     
+        
+      </div>
+    </div>
+    <!-- END FOOTER -->
  
    
     

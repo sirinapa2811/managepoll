@@ -44,7 +44,7 @@ class PublicationController(TGController):
         print status
         print message
 
-        redirect('/managepoll/publication/index',params={'idproject':kw['idproject']})
+        redirect('/managepoll/publication/indextest',params={'idproject':kw['idproject']})
     
     @expose('managepoll.templates.publication.publication')
     def publication(self,**kw):
@@ -110,7 +110,7 @@ class PublicationController(TGController):
         else :
             questionoption.updateall()
        
-        redirect('/managepoll/publication/index',params={'idproject':questionoption.id_question_project})
+        redirect('/managepoll/publication/indextest',params={'idproject':questionoption.id_question_project})
         
     
     @expose('managepoll.templates.publication.indextest')   
@@ -145,10 +145,10 @@ class PublicationController(TGController):
         questionthem = self.model.QuestionTheme.getAll(act = 1)    
         closetype = self.model.CloseType.getAll(active = 1)
         randomtype = self.model.RandomType.getAll(active = 1)
-        emailtemplate, total = self.model.Invitation.getByUser(user.user_id)
+        emailtemplate, total = self.model.Invitation.getByUser(userid = user.user_id)
         
         return dict(page='publicationtest',
-                    questionoption = questionoption,
+                    questionoption = questionoption,                  
                     emailtemplate = emailtemplate, 
                     randomtype=randomtype, 
                     closetype=closetype, 

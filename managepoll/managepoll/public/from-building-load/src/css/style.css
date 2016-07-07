@@ -42,21 +42,21 @@
 }
 .left-col {
   float: left;
-  width: 40%;
+  width: 50%;
   position: relative;
   left: 60%;
   overflow: hidden;
 }
 .right-col {
   float: left;
-  width: 55%;
+  width: 50%;
   position: relative;
-  left: 68%;
+  left: 65%;
   overflow: hidden;
 }
 /* Tabs */
 .nav-tabs {
-  margin: 30px;
+  margin: 25px;
   padding: 0px;
   border: 1px solid #cdcdcd;
   border-width: 0 0 1px 0;

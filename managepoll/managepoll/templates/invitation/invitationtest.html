@@ -2,83 +2,101 @@
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <xi:include href="${tg.url('master/mymaster.html')}" />
+    <xi:include href="${tg.url('master/mymastertest.html')}" />
+	<xi:include href="${tg.url('master/submenu.html')}" />
 
 <head>
   <title></title>
+  	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css"/>
+  	
 	<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css"/>
  	
  	
 	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
 	
-
-	
-   	<script src="${tg.url('/_pluggable/managepoll/javascript/page/invitation/invitation.js')}"></script>
    	
+   	<!-- BEGIN THEME STYLES -->
+    <link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
+	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
+	<link href="${tg.url('/theme/assets/admin/layout/css/layout.css')}" rel="stylesheet" type="text/css"/>	
+	
+	<script src="${tg.url('/_pluggable/managepoll/javascript/page/testnewtemplate/invitationtest.js')}"></script>
   
    	
 </head>
 <body>
-<form action="/managepoll/invitation/saveinvitation" method="post" role="form" class="form-horizontal" id = "save_inittation" >   
-
-
-
-<input type ="hidden" name ="id_question_invitation" id ="id_question_invitation"  value="${invitation.id_question_invitation}"/>
-
-
-
-	
-<div class="container">  
-   <div class="col-sm-12"><h2>Invitation</h2></div>
-   <div class="form-group">
-   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">name_content</span></label>
-    	<div class="col-sm-10">
-    	    <input type="text" class="form-control" name="name_content" id = "name_content" value = "${invitation.name_content}"  data-rule-required = "true" />
-    	</div>
-   </div>
-      <div class="form-group ">
-   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">email_title</span></label>
-    	<div class="col-sm-10">
-    		<input type="text" class="form-control" name="subject"  id ="subject" value = "${invitation.subject}"  data-rule-required = "true"	/>
-    	</div>
-   </div>
-	
-	   <div class="form-group ">
-   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">from_name</span></label>
-    	<div class="col-sm-10">
-    		<input type="text" class="form-control" name="from_name" id ="from_name" value = "${invitation.from_name}"  data-rule-required = "true"	 />
-    	</div>
-   </div>
-	
-	
-	<div class="form-group">
-		<label for="mail" class="control-label col-sm-2" ><span lang="oth">content</span></label>
-  		
-  		<div class="col-sm-10">
-  			<textarea id="content" cols="70" rows="10" name="content"  data-rule-required = "true" >
-  			${invitation.content}
-  			</textarea>
-        	<div class="btn-group">	 
-			  	<label type="button" class="btn btn-default"  id = "vol_name"><span lang="oth">name_volunteer</span></label>
-		        <label type="button" class="btn btn-default"  id = "acc_url" ><span lang="oth">access_url</span></label>
-		        <label type="button" class="btn btn-default" id = "init_date"><span lang="oth">initial_date</span></label>
-		        <label type="button" class="btn btn-default" id = "finish_date"><span lang="oth">finish_date</span></label>		        
+<div class="main">
+      <div class="container">
+      	<div class="row service-box">
+      		<div class="content-page">	      		
+	      		<div class="row">
+		      		 ${submenu()}		 	  
+				  <div class="col-md-9 sidebar-content ">
+				 		<div class="row">
+							<div class="col-md-11">
+								<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="/managepoll/invitation/saveinvitation" method="post" id="save_inittation"> 
+								<input type ="hidden" name ="id_question_invitation" id ="id_question_invitation"  value="${invitation.id_question_invitation}"/>
+									<div class="form-group">
+										<h3 class="control-label pull-left"><span lang="oth">invitation</span></h3>										
+									</div>												
+								  
+								   <div class="form-group">
+								   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">name_content</span></label>
+								    	<div class="col-sm-10">
+								    	    <input type="text" class="form-control" name="name_content" id = "name_content" value = "${invitation.name_content}"  data-rule-required = "true" />
+								    	</div>
+								   </div>
+								      <div class="form-group ">
+								   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">email_title</span></label>
+								    	<div class="col-sm-10">
+								    		<input type="text" class="form-control" name="subject"  id ="subject" value = "${invitation.subject}"  data-rule-required = "true"	/>
+								    	</div>
+								   </div>
+									
+									   <div class="form-group ">
+								   		<label for="mail" class="control-label col-sm-2" ><span lang="oth">from_name</span></label>
+								    	<div class="col-sm-10">
+								    		<input type="text" class="form-control" name="from_name" id ="from_name" value = "${invitation.from_name}"  data-rule-required = "true"	 />
+								    	</div>
+								   </div>
+									
+									
+									<div class="form-group">
+										<label for="mail" class="control-label col-sm-2" ><span lang="oth">content</span></label>
+								  		
+								  		<div class="col-sm-10">
+								  			<textarea id="content" cols="70" rows="10" name="content"  data-rule-required = "true" >
+								  			${invitation.content}
+								  			</textarea>
+								        	<div class="btn-group">	 
+											  	<label type="button" class="btn btn-default"  id = "vol_name"><span lang="oth">name_volunteer</span></label>
+										        <label type="button" class="btn btn-default"  id = "acc_url" ><span lang="oth">access_url</span></label>
+										        <label type="button" class="btn btn-default" id = "init_date"><span lang="oth">initial_date</span></label>
+										        <label type="button" class="btn btn-default" id = "finish_date"><span lang="oth">finish_date</span></label>		        
+											</div>
+								      	</div>    	
+									</div>
+								
+								    							   
+									<div class="col-sm-12">
+										<!-- <input type="submit" class="btn btn-success" id = "save" value="save"/> -->
+										  
+										<a href="#" class="btn btn-sm btn-info pull-left" id = "btn_cancel" role="button">Cancel</a>
+										<button type="submit" class="btn btn-sm btn-success pull-right" ><span lang="oth">save</span></button> 
+										
+										
+									</div>
+								
+								
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-      	</div>    	
+		</div>
 	</div>
-
-    <div class="form-group">
-    <div class="col-sm-2"></div>
-	<div class="col-sm-10">
-		<!-- <input type="submit" class="btn btn-success" id = "save" value="save"/> -->
-		<button type="submit" class="btn btn-sm btn-success" ><span lang="oth">save</span></button>   
-		
-	</div>
-	</div>
-	</div>
-	</form>
-
-
+</div>
 </body>
 </html>

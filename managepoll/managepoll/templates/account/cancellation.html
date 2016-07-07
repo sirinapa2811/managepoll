@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"      
+      xmlns:ng="http://angularjs.org"
+      lang="en"
+      >
+  	<xi:include href="${tg.url('master/mymastertest.html')}" />
+	<xi:include href="${tg.url('master/submenu_account.html')}" />
+ 
+
+<head>
+	<title>Welcome to Poll &amp; Survey</title> 
+	
+	<!-- BEGIN THEME STYLES -->
+	<link href="${tg.url('/theme/assets/global/css/components.css')}" rel="stylesheet"/> 
+	<link href="${tg.url('/theme/assets/global/css/plugins.css')}" rel="stylesheet" type="text/css"/>
+	<link href="${tg.url('/javascript/jquery/plugins/jquery-confirm/jquery-confirm.min.css')}" rel="stylesheet" type="text/css"/> 
+	<link href="${tg.url('/theme/assets/admin/layout/css/layout.css')}" rel="stylesheet" type="text/css"/> 
+	
+	<script src="${tg.url('/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js')}" type="text/javascript"></script>
+	<script src="${tg.url('/javascript/jquery/plugins/jquery-confirm/jquery-confirm.min.js')}" type="text/javascript"></script>
+	
+	<script src="${tg.url('/_pluggable/managepoll/javascript/pages/account/account-menu-page.js')}" type="text/javascript"></script> 	  
+	<script src="${tg.url('/_pluggable/managepoll/javascript/pages/account/cancellation-page.js')}" type="text/javascript"></script> 
+
+	    
+</head>
+ 
+
+<body class="corporate">
+    
+
+<div class="main">
+      <div class="container">
+      	<div class="row service-box">
+      		<div class="content-page">
+	      		
+	      		<div class="row">
+		      		 ${submenu_account()}	  
+				 	<div class="col-md-9 sidebar-content ">
+				 		<div class="row">
+							<div class="col-md-12">
+								<form class="socialmedia-form form-horizontal form-bordered form-row-stripped" action="/account/deactivate" method="post" id="cancellation-form">  
+									<h3 class="form-title"><span lang="oth">account_cancellation</span></h3>
+									<hr/>								
+									<div class="form-body">				 						
+				 						<div class="form-group">
+											<label class="control-label col-md-3">  <span lang="oth">deactivate_your_account</span> </label>
+											<div class="col-md-9">
+												<p><span lang="oth">msg_description_deactivate</span></p>
+												<button type="submit" id="confirm-submit-btn" class="btn red"> 
+													<i class="glyphicon glyphicon-remove-sign"></i> 
+													<span lang="oth">confirm_deactivate</span>  
+												</button>  
+											</div>
+										</div>										 
+									</div>				
+								</form>							
+							</div>							
+						</div>				 	
+				 	</div>			 		
+				</div> 
+      		</div>	
+      	</div>
+     </div>      
+</div>
+	
+	<script>
+			jQuery(document).ready(function() {  
+				Cancellation.init();
+			});			 
+	</script>
+
+</body>
+</html>

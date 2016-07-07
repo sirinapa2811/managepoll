@@ -81,7 +81,7 @@ class InvitationController(TGController):
       
    
 
-        redirect('/managepoll/invitation/index')
+        redirect('/managepoll/invitation/indextest')
         
         
     @expose('managepoll.templates.invitation.indextest')
@@ -89,7 +89,7 @@ class InvitationController(TGController):
         user =  request.identity['user'];
         print user.user_id
                 
-        return dict(page = 'indextest',idproject = None)
+        return dict(page = 'invitation',idproject = None)
         
     @expose('managepoll.templates.invitation.invitationtest')
     def invitationtest(self,**kw):
@@ -115,5 +115,12 @@ class InvitationController(TGController):
             invitation.content =  self.emailtemplate.content_template
          
         return dict(page='invitationtest', invitation = invitation,idproject = None)
+    
+    @expose()
+    def deleteinvitation(self,**kw):  
+        print kw  
+        self.model.Invitation.deleteById(kw['idinvitation'])
+       
+        redirect('/managepoll/invitation/indextest')        
     
         

@@ -43,25 +43,36 @@
     
     
 
-    debugger;
-    $("#add_invitation").click(function(){
+    //debugger;
     
-    
-		$.confirm({ 
-		        title: window.lang.translate('confirm_invitation'), 
-		        content: window.lang.translate('msg_confirm_invitation'), 
-		        confirmButton : window.lang.translate('yes'), 
-		        cancelButton : window.lang.translate('no'), 
-		        confirmButtonClass: 'btn-info', 
-		        cancelButtonClass: 'btn-danger', 
-		        icon: 'fa fa-warning', 
-		        closeIcon: true,                       
-		        confirm: function(){
-		        	 window.location.assign("/managepoll/invitation/invitation")
-		        }
-	  	
-		 })
+   $("#id_question_invitation").select2({	  	
+    	placeholder: 'Select E-mail Template',
+        allowClear: true,       
+        escapeMarkup: function (m) {
+            return m;
+        }
     });
+    
+    $("#add_invitation").click(function(){
+   
+    	$.confirm({ 
+            title: window.lang.translate('confirm_invitation'), 
+            content: window.lang.translate('msg_confirm_invitation'), 
+            confirmButton : window.lang.translate('yes'), 
+            cancelButton : window.lang.translate('no'), 
+            confirmButtonClass: 'btn-info', 
+            cancelButtonClass: 'btn-danger', 
+            icon: 'fa fa-warning', 
+            closeIcon: true,                       
+            confirm: function(){
+            	 window.location.assign("/managepoll/invitation/invitationtest")
+            }
+    	
+    	})
+    });
+    
+	
+ 
     
     $("#save_publication" ).validate();
 
@@ -70,11 +81,10 @@
 		window.location.assign("/managepoll/publication/indextest?idproject=" + $("#id_question_project").val())
 		
 	});
-    
-    
-    
-   
 
-    
     });
+    function resetfield() {	
+    	
+		document.getElementById("save_publication").reset();
+	}
     	

@@ -27,6 +27,7 @@ from .project import ProjectController
 from .invitation import InvitationController
 from .publication import PublicationController
 from .voter import VoterController
+from .account import AccountController
 
 
 class RootController(TGController):
@@ -34,12 +35,11 @@ class RootController(TGController):
 
     allow_only = in_any_group('voter', 'managers', msg=l_('Only for people with the "manage" permission'))
     
-    invitation = InvitationController(model, model.DBSession, config_type=TGAdminConfig)
-    
-    voter = VoterController(model, model.DBSession, config_type=TGAdminConfig)
-    
+    invitation = InvitationController(model, model.DBSession, config_type=TGAdminConfig)    
+    voter = VoterController(model, model.DBSession, config_type=TGAdminConfig)    
     publication = PublicationController(model, model.DBSession, config_type=TGAdminConfig)
     project = ProjectController(model, model.DBSession, config_type=TGAdminConfig)
+    account = AccountController(model, model.DBSession, config_type=TGAdminConfig)
     script = LoadDataControllers(model, model.DBSession, config_type=TGAdminConfig)
     
     
@@ -54,8 +54,9 @@ class RootController(TGController):
     
     @expose('managepoll.templates.index')
     def index(self):
-        flash(_("Hello World!"))
+        flash(_("Hello World!"))       
         return dict(page ='index',idproject = None)
+      
     
     
     

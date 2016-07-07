@@ -38,5 +38,21 @@ var grid =  $("#grid-data").bootgrid({
 });
 $('#frm_survey').validate();
 
+
+
+
+	$("#id_question_project_type").select2({	
+		placeholder: 'Select Type of Project',
+       allowClear: true,     	    
+       escapeMarkup: function (m) {
+           return m;
+       }
+   });
+
+
+
 });	
+
+
+
 

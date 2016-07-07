@@ -2,18 +2,12 @@
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
-  <xi:include href="master/mymastertest.html" />
-  <xi:include href="master/submenu.html" />
-  
-  
-  
+<xi:include href="master/mymastertest.html" /> 
+<xi:include href="master/submenu_account.html" />   
+<xi:include href="master/submenu.html" />  
+
 <head>
-
 <title></title>
-
- 
-
-
 <link href="${tg.url('/theme/assets/global/plugins/select2/select2.css')}" rel="stylesheet" type="text/css"/>
 
 <!-- END PAGE LEVEL SCRIPTS -->
@@ -28,43 +22,28 @@
 <div class="main">
       <div class="container">
       	<div class="row service-box">
-      		<div class="content-page">
-	      		
+      		<div class="content-page">	      		
 	      		<div class="row">
-		      		 ${submenu()}
-				 	  
-				 	  
+		      		
 				 	  <div class="col-md-9 sidebar-content ">
 					 		<div class="row">
 								<div class="col-md-11">
-									<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="${tg.url('/account/updateprofile')}" method="post" id="accountsetting-form"> <!-- ${tg.url('/register/create')} -->
+									<form class="accountsetting-form form-horizontal form-bordered form-row-stripped" action="${tg.url('/account/updateprofile')}" method="post" id="accountsetting-form"> 
 									
-				 					
-				 						
-					 					
-					 						
-										
-									</form>						 
-								
-								</div>
-								
-							</div>
-					 	
-					 	</div>
-				 	  
-				 		
-				 </div> 
-      			</div>
-      		
-      		
-      			
-				 	
-				 	
-				 
-			</div>
-      </div>
-      
-</div>
+
+									
+									
+									</form>		
+								</div>								
+							</div>					 	
+					 	</div>				 	  				 		
+				 	</div> 
+      			</div>		
+      		</div>
+      	</div>      
+	</div>
+	
+
 
 </body>
 </html>

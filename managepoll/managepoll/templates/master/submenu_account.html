@@ -1,0 +1,34 @@
+<html xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      py:strip="">
+<py:def function="submenu_account">
+  <div id="header">
+	
+	<div class="col-md-3 sidebar-content "> 	
+	
+		
+	
+		
+ 		<ul class="ver-inline-menu tabbable margin-bottom-25">
+			<li class="${('', 'active')[value_of('page') == 'index']}">
+           		<a href="${tg.url('/managepoll/account')}">
+           		<i class="fa fa-user"></i> <span lang="oth">general_setting</span></a>
+       		</li>
+       		<li class="${('', 'active')[value_of('page') == 'changepassword']}">
+           		<a href="${tg.url('/managepoll/account/changepass')}">
+           		<i class="fa fa-unlock-alt"></i> <span lang="oth">change_password</span></a>
+       		</li>	
+       		<li class="${('', 'active')[value_of('page') == 'socialmedia']}">
+           		<a href="${tg.url('/managepoll/account/socialmedia')}">
+           		<i class="fa fa-group"></i> <span lang="oth">social_media</span></a>
+       		</li>
+       		<li class="${('', 'active')[value_of('page') == 'cancellation']}">
+           		<a href="${tg.url('/managepoll/account/cancellation')}">
+           		<i class="fa fa-info-circle"></i> <span lang="oth">account_cancellation</span></a>
+       		</li>
+       		 
+       	</ul>
+ 	  </div>  
+  </div>
+</py:def>
+</html>

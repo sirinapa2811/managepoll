@@ -85,6 +85,7 @@ class VoterController(TGController):
      
     @expose()   
     def savevoter(self,**kw):
+        print kw
        
         user =  request.identity['user'];
         print "********************"
@@ -108,7 +109,11 @@ class VoterController(TGController):
         voter.lastname = kw['lastname']          
        
         voter.id_marriage_status  = kw['id_marriage_status']
-        voter.birthdate = kw['birthdate']
+        
+        #voter.birthdate = kw['birthdate'] 
+            
+        voter.birthdate = self.utility.convertToDateTime(kw['birthdate'], '%d/%m/%Y') 
+        
         voter.id_gender = kw['id_gender']
            
         voter.id_living_condition = kw['id_living_condition']                                                        
@@ -184,7 +189,7 @@ class VoterController(TGController):
             voteremployment.save()
     
              
-        redirect('/managepoll/voter')
+        redirect('/managepoll/voter/indextest')
         
     @expose('managepoll.templates.voter.indextest')
     def indextest(self):    
@@ -192,7 +197,8 @@ class VoterController(TGController):
     
     
     @expose('managepoll.templates.voter.votertest')
-    def voterstest(self,*args,**kw):
+    def votertest(self,*args,**kw):
+        print kw
         reload(sys).setdefaultencoding('utf8')   
         
         voterObject = VoterObject()        
@@ -208,9 +214,11 @@ class VoterController(TGController):
         print "voters : lang"
         
         self.lang = self.model.Languages.getAll()
+        
         print self.lang
-        self.marriageStatus = self.model.MarriageStatus.getAll(act=1)
-        self.gender = self.model.Gender.getAll(act=1)
+        
+        self.marriageStatus = self.model.MarriageStatus.getAll(act=1)        
+        self.gender = self.model.Gender.getAll(act=1)        
         self.tel = self.model.TelephoneType.getAll(act=1)
         self.religion = self.model.ReligionType.getAll(act=1)
         self.national = self.model.NationalityType.getAll(act=1)
@@ -221,6 +229,9 @@ class VoterController(TGController):
         self.telephone = self.model.TelephoneType.getAll(act=1)
         self.education = self.model.EducationType.getAll(act=1)
         self.addresstype = self.model.AddressType.getAll(act=1)
+        print "***************"
+       
+        print voterObject.birthdate
             
         
         return dict(page = 'votertest',
@@ -241,9 +252,14 @@ class VoterController(TGController):
                     voter = voterObject,
                     idproject=None)
 
+ 
+    @expose()
+    def deletevoter(self,**kw):  
+        print kw  
+        self.model.Invitation.deleteById(kw['idinvitation'])
+       
+        redirect('/managepoll/invitation/indextest')        
     
-    
-
     
     
     
